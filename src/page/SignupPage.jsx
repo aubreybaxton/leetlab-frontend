@@ -29,45 +29,45 @@ const SignupPage = () => {
             <hr className='my-4 text-black' />
             <div className='form-control'>
               <label className="label">
-                <span><User /></span>
+                <span><User color="#7f36b0" strokeWidth={1.5}/></span>
                 <span className='label-text text-black'> Name</span>
+
               </label>
-              <input type="text" className="input input-bordered w-full " placeholder="enter name" />
+              <input type="text"  {...register("name",{required:true})} className="input input-bordered w-full " placeholder="enter name" />
+              {errors.name && <span className='text-red-500'>{"-->"} This is required.....</span>}
             </div>
             <br />
             <div className='form-control'>
               <label className="label">
-              <span><Mail /></span>
+              <span><Mail color="#7f36b0" strokeWidth={1.5} /></span>
                 <span className='label-text text-black'> Email</span>
               </label>
              <div className='input-group'>
              {/* <span><Mail /></span> */}
-             <input type="email" className="input input-bordered w-full " placeholder="email@example.com" />
+             <input type="email" {...register("email",{required:true})} className="input input-bordered w-full " placeholder="email@example.com" />
+             {errors.email && <span className='text-red-500'>{"-->"} This is required.....</span>}
              </div>
             </div>
 
             <br />
             <div className='form-control relative'>
               <label className="label">
-              <KeyRound />
+              <KeyRound color="#7f36b0" strokeWidth={1.5} />
                 <span className='label-text text-black'>Password</span>
               </label>
-              <input type="password" className="input input-bordered w-full " placeholder="Password" />
-              <button
-                  type="button"
-                  className="absolute inset-y-0 right-3  top-1/2 flex items-center"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-base-content/40" />
-                  ) : (
-                    <Eye className="h-5 w-5 text-base-content/40" />
-                  )}
-                </button>
+              <input type={showPassword?"text":"password"} {...register("password",{required:true})} className="input input-bordered w-full " placeholder="Password" />
+              {errors.password && <span className='text-red-500'>{"-->"} This is required.....</span>}
+
+              <label className='label mt-4 text-black'>
+              <input type="checkbox"  
+              onClick={() => setShowPassword(!showPassword)}
+               className="checkbox checkbox-primary " />
+                Show Password
+              </label>
             </div>
 
             <div className='form-control mt-4'>
-              <button className="btn btn-primary mt-4 w-full">Signup</button>
+              <button className="btn btn-primary mt-4 w-full transition-transform duration-200 hover:scale-105">Signup</button>
             </div>
 
             <p className="text-sm text-center text-black pt-2">

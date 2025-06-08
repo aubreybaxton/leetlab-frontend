@@ -6,18 +6,20 @@ import SignupPage from "./page/SignupPage.jsx";
 
 
 function App() {
-  const authUser= null;
+  const authUser = null;
   return (
     <>
       <div className="flex flex-col items-center justify-start">
         <Routes>
-          <Route path="/" element={ authUser?<HomePage/>:<Navigate to={<LoginPage/>}/>} />
-        {/* {{!authUser?<LoginPage/> :<Navigate to={<HomePage/>} } */}
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/signup" element={<SignupPage/>} />
+          <Route path="/" element={<HomePage />} />
+          {/* 
+        authUser?<HomePage/>:<Navigate to={<LoginPage/>}/>
+        {{!authUser?<LoginPage/> :<Navigate to={<HomePage/>} } */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
       </div>
-      
+
     </>
   )
 }

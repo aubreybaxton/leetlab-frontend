@@ -1,4 +1,4 @@
-import z from 'zod'
+import z from 'zod';
 
 export const signupSchema= z.object({
     email:z.string().email("Enter a valid email"),
@@ -8,5 +8,5 @@ export const signupSchema= z.object({
 
 export const loginSchema= z.object({
     email:z.string().email("Enter a valid email"),
-    password:z.string(),
+    password:z.string().min(8, "password must be atleast 8 character"),
 })

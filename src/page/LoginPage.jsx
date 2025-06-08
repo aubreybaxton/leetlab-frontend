@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
 import { loginSchema } from './schema/Schema.jsx';
-import { Mail, KeyRound, Eye, EyeOff } from 'lucide-react';
+import { Mail, KeyRound } from 'lucide-react';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -29,38 +29,34 @@ const LoginPage = () => {
             <br />
             <div className='form-control'>
               <label className="label">
-                <spa><Mail /></spa>
+                <span><Mail color="#7f36b0" strokeWidth={1.5} /></span>
                 <span className='label-text text-black'> Email</span>
               </label>
               <input type="email"
                 {...register("email")}
                 className="input input-bordered w-full " placeholder="email@example.com" />
+              {errors.email && <span className='text-red-500 block'>{"-->"}This field is required</span>}
             </div>
             <br />
-            <div className='form-control relative'>
+            <div className='form-control'>
               <label className="label">
-                <spa><KeyRound /></spa>
+                <span><KeyRound color="#7f36b0" strokeWidth={1.5} /></span>
                 <span className='label-text text-black'>Password</span>
               </label>
-              <input type="password"
-                {...register("password")}
+              <input type={showPassword?"text":"password"}
+                {...register("password", { required: true })}
                 className="input input-bordered w-full " placeholder="Password" />
-
-              <button
-                type="button"
-                className="absolute inset-y-0 right-3  top-1/2 flex items-center"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <EyeOff className="h-5 w-5 text-base-content/40" />
-                ) : (
-                  <Eye className="h-5 w-5 text-base-content/40" />
-                )}
-              </button>
+              {errors.password && <span className='text-red-500 block'> {"-->"}This field is required</span>}
+              <label className='label mt-4 text-black'>
+              <input type="checkbox"  
+              onClick={() => setShowPassword(!showPassword)}
+               className="checkbox checkbox-primary " />
+                Show Password
+              </label>
             </div>
 
             <div className='form-control mt-4'>
-              <button className="btn btn-primary mt-4 w-full">Login</button>
+              <button className="btn btn-primary mt-4 w-full transition-transform duration-200 hover:scale-105">Login</button>
             </div>
             <p className="text-sm text-center text-black pt-2">
               Don't have an account?
