@@ -1,7 +1,7 @@
-// ThemeToggle.jsx
+
 import { useEffect, useState } from "react";
 
-const ThemeToggle = () => {
+const ToggleTheme = () => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const ThemeToggle = () => {
   );
 };
 
-export default ThemeToggle;
+export default ToggleTheme;
