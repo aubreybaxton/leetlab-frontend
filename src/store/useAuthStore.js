@@ -18,7 +18,7 @@ export const useAuthStore = create((set) => ({
         } catch (error) {
             console.log("Error while Logging In",error)
             set({ authUser: null })
-            toast.error("Error while Logging In")
+            //toast.error("Error while Logging In")
         } finally {
             set({ isCheckingAuth: false })
         }

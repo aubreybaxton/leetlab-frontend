@@ -31,6 +31,10 @@ const LoginPage = () => {
   return (
     <>
       <div className="h-screen grid place-items-center w-full ">
+      {/* <div className="absolute top-0 right-0 w-60 h-60 bg-accent opacity-20 blur-2xl rounded-full"></div>
+    <div className="absolute bottom-0 left-0 w-80 h-40 bg-secondary opacity-25 blur-3xl rounded-full"></div> */}
+    <div className="hidden dark:block absolute top-20 left-10 w-1/3 h-1/3 bg-primary opacity-20 blur-3xl rounded-full"></div>
+
         <div className='shadow-2xl shadow-indigo-400 rounded-4xl w-md'>
 
           <form onSubmit={handleSubmit(onSubmit)} className='bg-indigo-50 p-8 rounded-xl border-2 border-indigo-600'>

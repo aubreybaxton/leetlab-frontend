@@ -30,10 +30,11 @@ const SignupPage = () => {
   }
   return (
     <>
-      <div className="h-screen grid place-items-center w-full ">
+      <div className="h-screen grid place-items-center w-fullbg-gray-900 text-white ">
+      <div className="hidden dark:block absolute top-20 left-10 w-1/3 h-1/3 bg-primary opacity-20 blur-3xl rounded-full"></div>
         <div className='shadow-2xl shadow-indigo-400 rounded-4xl w-md'>
 
-          <form onSubmit={handleSubmit(onSubmit)} className='bg-indigo-50 p-8 rounded-xl border-2 border-indigo-600'>
+          <form onSubmit={handleSubmit(onSubmit)} className='bg-indigo-100 p-8 rounded-xl border-2 border-indigo-600'>
             <h3 className='text-2xl font-bold text-center text-black'> Signup</h3>
             <hr className='my-4 text-black' />
             <div className='form-control'>

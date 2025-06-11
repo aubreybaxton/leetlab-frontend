@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore.js';
-import ToggleTheme from '../page/ToggleTheme.jsx';
+ import ToggleTheme from '../page/ToggleTheme.jsx';
+import LogoutButton from './LogoutButton.jsx';
+import { FilePlus2, LogOut, Settings, User } from 'lucide-react';
 
 
 function Navbar() {
@@ -20,20 +22,22 @@ function Navbar() {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src={authUser?.image||"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" } />
+                                    alt="user image"
+                                    src={authUser?.image || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
                             </div>
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 text-base-content rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li>
-                                <Link>
-                                    Profile
-                                </Link>
-                            </li>
-                            <li><Link>Settings</Link></li>
-                            <li><Link>Logout</Link></li>
+                            className="menu dropdown-content bg-slate-500 text-slate-content rounded-box z-1 mt-3 w-44 p-2 shadow">
+                                <p className='text-accent text-center'>{authUser?.name}</p>
+                                <div className='divider'></div>   
+                            <li><Link to={"/profile"}> <User /> Profile</Link></li>
+                            { authUser?.role==="ADMIN"&&(
+                                <li><Link to={"/addproblem"}><FilePlus2 /> Add Problem</Link> </li>
+                            )}
+                            <li><Link to={"/setting"}> <Settings /> Settings</Link></li>
+                            <div className='divider'></div>
+                            <li><LogoutButton><LogOut /> Logout</LogoutButton></li>
                         </ul>
                     </div>
                 </div>

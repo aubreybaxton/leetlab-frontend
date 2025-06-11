@@ -9,6 +9,7 @@ import LoginPage from "./page/LoginPage.jsx";
 import SignupPage from "./page/SignupPage.jsx";
 import { useAuthStore } from "./store/useAuthStore.js";
 import Layout from "./layout/layout.jsx";
+import AdminRoute from "./layout/AdminRoute.jsx";
 
 
 
@@ -41,6 +42,9 @@ function App() {
         { } */}
           <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
           <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to={"/"} />} />
+          <Route element={<AdminRoute/>}>
+            <Route path="/"/>
+          </Route>
         </Routes>
       </div>
 
