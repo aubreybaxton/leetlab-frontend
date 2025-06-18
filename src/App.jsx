@@ -21,27 +21,48 @@ function App() {
     checkAuth()
   }, [checkAuth])
 
-    if (isCheckingAuth && !authUser) {
-      return (
-        <div className="flex flex-col items-center justify-start pt-8">
-          <Loader color="#460082" className="size-10 animate-spin" />
-        </div>
-      );
-    }
+  if (isCheckingAuth && !authUser) {
+    return (
+      <div className="flex flex-col items-center justify-start pt-8">
+        <Loader color="#460082" className="size-10 animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <>
       <div className="flex flex-col min-h-screen w-full " >
-        <Toaster />
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            success: {
+              style: {
+                borderRadius: '12px',
+                border: '2px solid #059212',
+                padding: '16px',
+                color: 'black',
+              },
+            },
+            error: {
+              style: {
+                border: '2px solid #FF204E',
+                borderRadius: '12px',
+                padding: '16px',
+                color: 'red'
+              },
+            },
+          }}
+        />
         <Routes>
-          <Route path="/" element={<Layout/>}>
-          <Route index element={authUser ? <HomePage /> : <Navigate to={"/login"} />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={authUser ? <HomePage /> : <Navigate to={"/login"} />} />
           </Route>
-          
-          <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} /> } />
-          <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to={"/"} /> } />
-          <Route element={<AdminRoute/>}>
-            <Route path="/addproblem" element={authUser ? <AddProblem /> : <Navigate to={"/"} /> }/>
+
+          <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
+          <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to={"/"} />} />
+          <Route element={<AdminRoute />}>
+            <Route path="/addproblem" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
           </Route>
         </Routes>
       </div>
