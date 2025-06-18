@@ -30,7 +30,10 @@ function Navbar() {
                             className="menu dropdown-content bg-slate-500 text-slate-content rounded-box z-1 mt-3 w-44 p-2 shadow">
                             <p className='text-accent text-center'>{authUser?.name}</p>
                             <div className='divider'></div>
-                            <li><Link to={"/profile"}> <User /> Profile</Link></li>
+                            {authUser?.role === "ADMIN" ? 
+                            <li><Link to={"/profileadmin"}> <User /> Admin Profile</Link></li> 
+                            : <li><Link to={"/profile"}> <User /> Profile</Link></li>
+                            }
                             {authUser?.role === "ADMIN" && (
                                 <>
                                     <li><Link to={"/addproblem"}><FilePlus2 /> Add Problem</Link> </li>

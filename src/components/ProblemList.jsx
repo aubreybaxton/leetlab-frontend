@@ -1,6 +1,6 @@
 import React from 'react';
 import { useProblemStore } from '../store/useProblemStore';
-import { PencilLine, Trash2, FilePlus } from "lucide-react"
+import { PencilLine, Trash2, FilePlus, BookmarkPlus, Ellipsis } from "lucide-react"
 
 function ProblemList() {
   const { problems } = useProblemStore();
@@ -10,12 +10,16 @@ function ProblemList() {
       
       <div className="divider"></div>
       <div className='flex relative'>
-        <fieldset className="fieldset mx-4">
-          <legend className="fieldset-legend">Select All</legend>
+        <fieldset className="fieldset mx-4 ml-4 w-48">
+          <legend className="fieldset-legend text-lg">Select All</legend>
           <input type="checkbox" className="checkbox checkbox-secondary" />
         </fieldset>
-        <fieldset className="fieldset mx-4">
-          <legend className="fieldset-legend">Difficulty</legend>
+        <fieldset className="fieldset mx-4 w-48">
+          <legend className="fieldset-legend text-lg">Search by Title</legend>
+          <input type="text" className="input" placeholder="My awesome page" />
+        </fieldset>
+        <fieldset className="fieldset mx-4 w-48">
+          <legend className="fieldset-legend text-lg">Difficulty</legend>
           <select defaultValue="Pick a browser" className="select">
             <option disabled={true}>type</option>
             <option>Easy</option>
@@ -23,10 +27,10 @@ function ProblemList() {
             <option>Hard</option>
           </select>
         </fieldset>
-        <fieldset className="fieldset mx-4">
-          <legend className="fieldset-legend">Type</legend>
+        <fieldset className="fieldset mx-4 w-48">
+          <legend className="fieldset-legend text-lg">Tag</legend>
           <select defaultValue="Pick a browser" className="select">
-            <option disabled={true}>Pick a browser</option>
+            <option disabled={true}>Filter by Tag</option>
             <option>Chrome</option>
             <option>FireFox</option>
             <option>Safari</option>
@@ -42,7 +46,7 @@ function ProblemList() {
             <tr className='bg-gray-500'>
               <th className="rounded-tl-lg">
                 <label>
-                  <input type="checkbox" className="checkbox" />
+                  {/* <input type="checkbox" className="checkbox" /> */}
                 </label>
               </th>
               <th>Title</th>
@@ -57,7 +61,7 @@ function ProblemList() {
               <tr key={problem.id} className='transition delay-150 duration-300 ease-in-out hover:scale-102 hover:bg-base-300'>
                 <th>
                   <label>
-                    <input type="checkbox" className="checkbox" />
+                    <input type="checkbox" className="checkbox ml-4" />
                   </label>
                 </th>
                 <td>
@@ -78,12 +82,12 @@ function ProblemList() {
                 </td>
                 <th>
                   <button className='btn mr-4 hover:bg-blue-800' ><PencilLine /></button>
-                  <button className='btn hover:bg-red-500'> <Trash2 /></button>
+                  <button className='btn mr-4 hover:bg-red-500'> <Trash2 /></button>
+                  <button className='btn mr-4 hover:bg-success'> <BookmarkPlus /></button>
+                  <button className='btn mr-4 hover:bg-error'> <Ellipsis /></button>
                 </th>
               </tr>
             ))}
-
-
           </tbody>
 
         </table>

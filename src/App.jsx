@@ -11,6 +11,8 @@ import { useAuthStore } from "./store/useAuthStore.js";
 import Layout from "./layout/layout.jsx";
 import AdminRoute from "./layout/AdminRoute.jsx";
 import AddProblem from "./page/AddProblem.jsx";
+import Profile from "./components/profile.jsx";
+import Setting from "./components/Setting.jsx";
 
 
 
@@ -57,12 +59,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={authUser ? <HomePage /> : <Navigate to={"/login"} />} />
+            <Route path="profile" element={authUser ? <Profile /> : <Navigate to={"/login"} />} />
+            <Route path="setting" element={authUser ? <Setting /> : <Navigate to={"/login"} />} />
           </Route>
 
           <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
           <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to={"/"} />} />
           <Route element={<AdminRoute />}>
             <Route path="/addproblem" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
+            <Route path="/profileadmin" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
           </Route>
         </Routes>
       </div>

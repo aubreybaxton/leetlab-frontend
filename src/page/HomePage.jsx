@@ -14,7 +14,7 @@ const HomePage = () => {
   if (isProblemsLoading) {
     return (
       <div>
-        <Loader className='size-10 animate-spin' />
+        <Loader className='size-10 text-center animate-spin' />
       </div>
     )
   }
