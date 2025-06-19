@@ -1,13 +1,20 @@
-import React from 'react';
-import { useProblemStore } from '../store/useProblemStore';
+import React, { useState } from 'react';
+import { useProblemStore } from '../store/useProblemStore.js';
 import { PencilLine, Trash2, FilePlus, BookmarkPlus, Ellipsis } from "lucide-react"
 
 function ProblemList() {
   const { problems } = useProblemStore();
+
+  const [search, setSearch] = useState("");
+  const [difficulty, setDifficulty] = useState("ALL");
+  const [seletedTag, setSelectedTag] = useState("ALL");
+  const [currentPage, setCurrentPage] = useState(1);
+
+
   return (
     <div className=' flex flex-col justify-center border border-blue-600 mx-24 p-4 rounded-4xl shadow-xl/30 shadow-blue-500/50  mb-8'>
       <h2 className='text-center text-2xl'> Problems</h2>
-      
+
       <div className="divider"></div>
       <div className='flex relative'>
         <fieldset className="fieldset mx-4 ml-4 w-48">
@@ -16,12 +23,13 @@ function ProblemList() {
         </fieldset>
         <fieldset className="fieldset mx-4 w-48">
           <legend className="fieldset-legend text-lg">Search by Title</legend>
-          <input type="text" className="input" placeholder="My awesome page" />
+          <input type="text" className="input" placeholder="Search..." value={search}
+            onChange={(e) => setSearch(e.target.value)} />
         </fieldset>
         <fieldset className="fieldset mx-4 w-48">
           <legend className="fieldset-legend text-lg">Difficulty</legend>
-          <select defaultValue="Pick a browser" className="select">
-            <option disabled={true}>type</option>
+          <select defaultValue="Difficulty...." className="select">
+            <option> All</option>
             <option>Easy</option>
             <option>Medium</option>
             <option>Hard</option>
@@ -81,10 +89,35 @@ function ProblemList() {
                   ))}
                 </td>
                 <th>
-                  <button className='btn mr-4 hover:bg-blue-800' ><PencilLine /></button>
-                  <button className='btn mr-4 hover:bg-red-500'> <Trash2 /></button>
-                  <button className='btn mr-4 hover:bg-success'> <BookmarkPlus /></button>
-                  <button className='btn mr-4 hover:bg-error'> <Ellipsis /></button>
+                  
+                  <div className="tooltip">
+                    <div className="tooltip-content">
+                      <div className="animate-bounce text-orange-400 text-lg font-black"> Edit </div>
+                    </div>
+                    <button className='btn mr-4 hover:bg-blue-800' ><PencilLine /></button>
+                  </div>
+                  <div className="tooltip">
+                    <div className="tooltip-content">
+                      <div className="animate-bounce text-red-400 text-lg font-black"> Delete </div>
+                    </div>
+                    <button className='btn mr-4 hover:bg-red-500'> <Trash2 /></button>
+                  </div>
+                  <div className="tooltip">
+                    <div className="tooltip-content">
+                      <div className="animate-bounce text-success text-lg font-black"> Add to Playlist </div>
+                    </div>
+                    <button className='btn mr-4 hover:bg-success'> <BookmarkPlus /></button>
+                  </div>
+                  <div className="tooltip">
+                    <div className="tooltip-content">
+                      <div className="animate-bounce text-orange-400 text-lg font-black"> Actions </div>
+                    </div>
+                    <button className='btn mr-4 hover:bg-error'> <Ellipsis /></button>
+                  </div>
+                  
+                  
+                  
+                  
                 </th>
               </tr>
             ))}
