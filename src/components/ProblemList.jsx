@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useProblemStore } from '../store/useProblemStore.js';
 import { PencilLine, Trash2, FilePlus, BookmarkPlus, Ellipsis } from "lucide-react"
 
@@ -7,9 +7,19 @@ function ProblemList() {
 
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("ALL");
-  const [seletedTag, setSelectedTag] = useState("ALL");
+  const [selectedTag, setSelectedTag] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const difficultyLevel = ["EASY", "MEDIUM", "HARD"]
+
+  const allTags = useMemo(() => {
+    if (!Array.isArray(problems)) return [];
+    const tags = new Set();
+
+    problems.forEach((p) => (p.tags?.forEach((t) => (tags.add(t)))))
+    return Array.from(tags);
+  }, [problems])
+  console.log("tags", allTags)
 
   return (
     <div className=' flex flex-col justify-center border border-blue-600 mx-24 p-4 rounded-4xl shadow-xl/30 shadow-blue-500/50  mb-8'>
@@ -17,10 +27,10 @@ function ProblemList() {
 
       <div className="divider"></div>
       <div className='flex relative'>
-        <fieldset className="fieldset mx-4 ml-4 w-48">
+        {/* <fieldset className="fieldset mx-4 ml-4 w-48">
           <legend className="fieldset-legend text-lg">Select All</legend>
           <input type="checkbox" className="checkbox checkbox-secondary" />
-        </fieldset>
+        </fieldset> */}
         <fieldset className="fieldset mx-4 w-48">
           <legend className="fieldset-legend text-lg">Search by Title</legend>
           <input type="text" className="input" placeholder="Search..." value={search}
@@ -28,20 +38,27 @@ function ProblemList() {
         </fieldset>
         <fieldset className="fieldset mx-4 w-48">
           <legend className="fieldset-legend text-lg">Difficulty</legend>
-          <select defaultValue="Difficulty...." className="select">
-            <option> All</option>
-            <option>Easy</option>
-            <option>Medium</option>
-            <option>Hard</option>
+          <select className="select"
+            value={difficulty}
+            onChange={(e) => (setDifficulty(e.target.value))}>
+            <option value="ALL">ALL</option>
+            {difficultyLevel.map((level)=>(
+                <option value={level}>{level}</option>
+            ))}
+            
           </select>
         </fieldset>
         <fieldset className="fieldset mx-4 w-48">
           <legend className="fieldset-legend text-lg">Tag</legend>
-          <select defaultValue="Pick a browser" className="select">
-            <option disabled={true}>Filter by Tag</option>
-            <option>Chrome</option>
-            <option>FireFox</option>
-            <option>Safari</option>
+          <select
+            className="select"
+            value={selectedTag}
+            onChange={(e) => setSelectedTag(e.target.value)}
+          >
+            <option value="ALL" > ALL </option>
+            {allTags.map((tag) => (
+              <option key={tag} value={tag}>{tag}</option>
+            ))}
           </select>
         </fieldset>
         <button className=' absolute top-0 right-0 btn btn-secondary'><FilePlus /> Create Playlist</button>
@@ -89,35 +106,35 @@ function ProblemList() {
                   ))}
                 </td>
                 <th>
-                  
+
                   <div className="tooltip">
                     <div className="tooltip-content">
-                      <div className="animate-bounce text-orange-400 text-lg font-black"> Edit </div>
+                      <div className=" text-orange-400 text-md font-black"> Edit </div>
                     </div>
-                    <button className='btn mr-4 hover:bg-blue-800' ><PencilLine /></button>
+                    <button className='btn mr-4 p-3 rounded-lg hover:bg-blue-800 hover:animate-bounce' ><PencilLine /></button>
                   </div>
                   <div className="tooltip">
                     <div className="tooltip-content">
-                      <div className="animate-bounce text-red-400 text-lg font-black"> Delete </div>
+                      <div className=" text-red-400 text-md font-black"> Delete </div>
                     </div>
-                    <button className='btn mr-4 hover:bg-red-500'> <Trash2 /></button>
+                    <button className='btn mr-4 p-3 rounded-lg hover:bg-red-500 hover:animate-bounce'> <Trash2 /></button>
                   </div>
                   <div className="tooltip">
                     <div className="tooltip-content">
-                      <div className="animate-bounce text-success text-lg font-black"> Add to Playlist </div>
+                      <div className=" text-success text-md font-black"> Add to Playlist </div>
                     </div>
-                    <button className='btn mr-4 hover:bg-success'> <BookmarkPlus /></button>
+                    <button className='btn mr-4 p-3 rounded-lg hover:bg-success hover:animate-bounce'> <BookmarkPlus /></button>
                   </div>
                   <div className="tooltip">
                     <div className="tooltip-content">
-                      <div className="animate-bounce text-orange-400 text-lg font-black"> Actions </div>
+                      <div className=" text-orange-400 text-md font-black"> Actions </div>
                     </div>
-                    <button className='btn mr-4 hover:bg-error'> <Ellipsis /></button>
+                    <button className='btn mr-4 p-3 rounded-lg hover:bg-error hover:animate-bounce'> <Ellipsis /></button>
                   </div>
-                  
-                  
-                  
-                  
+
+
+
+
                 </th>
               </tr>
             ))}
