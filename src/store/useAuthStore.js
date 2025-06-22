@@ -16,42 +16,42 @@ export const useAuthStore = create((set) => ({
             console.log("auth Check response", authCheck.data)
             toast.success(authCheck.data.message)
         } catch (error) {
-            console.log("Error while Logging In",error)
+            console.log("Error while Logging In", error)
             set({ authUser: null })
             //toast.error("Error while Logging In")
         } finally {
             set({ isCheckingAuth: false })
         }
     },
-    signup:async (data) => {
-        set({isSignUp:true})
+    signup: async (data) => {
+        set({ isSignUp: true })
         try {
-            const signupResposne= await axiosInstance.post("/auth/register",data)
+            const signupResposne = await axiosInstance.post("/auth/register", data)
             set({ authUser: signupResposne.data.user });
-            console.log("signup response",signupResposne.data)
+            console.log("signup response", signupResposne.data)
             toast.success("SignUp Successfully")
-            
+
         } catch (error) {
-            console.log("Error while Logging In",error)
+            console.log("Error while Logging In", error)
             set({ authUser: null })
             toast.error("Error while Logging In")
-        }finally {
+        } finally {
             set({ isSignUp: false });
-          }
+        }
     },
-    login:async (data) => {
-        set({isLoggingIn:true})
+    login: async (data) => {
+        set({ isLoggingIn: true })
         try {
-            const loginRes= await axiosInstance.post("/auth/login", data)
+            const loginRes = await axiosInstance.post("/auth/login", data)
             set({ authUser: loginRes.data.user });
             console.log("Login response", loginRes.data)
             toast.success("Login Succesfully")
-        
+
         } catch (error) {
-            console.log("Error while Logging In",error)
+            console.log("Error while Logging In", error)
             set({ authUser: null })
             toast.error("Error while Logging In")
-        } finally{
+        } finally {
             set({ isLoggingIn: false })
         }
     },
@@ -59,12 +59,12 @@ export const useAuthStore = create((set) => ({
         try {
             await axiosInstance.post("/auth/logout");
             set({ authUser: null });
-      
+
             toast.success("Logout successful");
-          } catch (error) {
+        } catch (error) {
             console.log("Error logging out", error);
             toast.error("Error logging out");
-          }
+        }
     }
 })
 )
