@@ -36,6 +36,7 @@ function App() {
       <div className="flex flex-col min-h-screen w-full " >
         <Toaster
           position="top-right"
+          duration="3000"
           reverseOrder={false}
           toastOptions={{
             success: {
