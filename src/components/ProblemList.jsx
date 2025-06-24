@@ -21,12 +21,6 @@ function ProblemList() {
   }, [problems])
   console.log("tags", allTags)
 
-  const filterPorblems = useMemo(() => {
-    return (problems || [])
-      .filter((problem) => problem.title.toLowerCase().includes(search.toLocaleLowerCase()))
-      .filter((problem) => difficulty === "ALL" ? true : problem.setDifficulty === difficulty)
-      .filter((problem) => selectedTag === "ALL" ? true : problem.tags?.includes(selectedTag))
-  }, [problems, search, difficulty, selectedTag])
   return (
     <div className=' flex flex-col justify-center border border-blue-600 mx-24 p-4 rounded-4xl shadow-xl/30 shadow-blue-500/50  mb-8'>
       <h2 className='text-center text-2xl'> Problems</h2>
@@ -48,10 +42,10 @@ function ProblemList() {
             value={difficulty}
             onChange={(e) => (setDifficulty(e.target.value))}>
             <option value="ALL">ALL</option>
-            {difficultyLevel.map((level) => (
-              <option value={level}>{level}</option>
+            {difficultyLevel.map((level)=>(
+                <option value={level}>{level}</option>
             ))}
-
+            
           </select>
         </fieldset>
         <fieldset className="fieldset mx-4 w-48">
