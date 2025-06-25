@@ -134,7 +134,7 @@ function ProblemList() {
                       <div className="flex items-center gap-3">
                         <div>
                           <div className="font-bold">{problem.title}</div>
-                          <div className="text-sm opacity-50">United States</div>
+                          {isSolved && <div className="badge badge-sm badge-soft badge-accent"> Solved</div>}
                         </div>
                       </div>
                     </td>
@@ -177,7 +177,7 @@ function ProblemList() {
                         <div className="tooltip-content">
                           <div className=" text-orange-400 text-md font-black"> Actions </div>
                         </div>
-                        <button className='btn z-10 mr-4 p-3 rounded-lg hover:bg-error'> <Ellipsis  /></button>
+                        <button className='btn z-10 mr-4 p-3 rounded-lg hover:bg-error'> <Ellipsis /></button>
                       </div>
 
                     </th>
