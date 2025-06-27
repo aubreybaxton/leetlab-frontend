@@ -30,7 +30,7 @@ const SignupPage = () => {
   }
   return (
     <>
-      <div className="h-screen grid place-items-center w-fullbg-gray-900 text-white ">
+      <div className="h-screen grid place-items-center w-fullbg-gray-900 text-white " data-aos="zoom-in-down">
       <div className="hidden dark:block absolute top-20 left-10 w-1/3 h-1/3 bg-primary opacity-20 blur-3xl rounded-full"></div>
         <div className='shadow-2xl shadow-indigo-400 rounded-4xl w-md'>
 

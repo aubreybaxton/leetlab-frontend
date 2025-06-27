@@ -343,8 +343,8 @@ function CreateProblemForm() {
             <div className="space-y-8">
               <div className="tabs tabs-border">
                 {languageEditor.map((language, index) => (
-                  <>
-                    <input type="radio" key={`tab-${index}`}
+                  <div key={`tabs-${index}`}>
+                    <input type="radio" 
                       name="my_tabs_3"
                       className="tab hover:animate-bounce"
                       aria-label={language}
@@ -502,7 +502,7 @@ function CreateProblemForm() {
                       </div>
                     </div>
 
-                  </>
+                  </div>
 
                 ))}
               </div>

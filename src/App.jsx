@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { Loader } from "lucide-react";
-
-
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import HomePage from "./page/HomePage.jsx";
 import LoginPage from "./page/LoginPage.jsx";
 import SignupPage from "./page/SignupPage.jsx";
@@ -13,7 +14,11 @@ import AdminRoute from "./layout/AdminRoute.jsx";
 import AddProblem from "./page/AddProblem.jsx";
 import Profile from "./components/profile.jsx";
 import Setting from "./components/Setting.jsx";
+import Index from "./page/index.jsx";
+import NotFound from "./page/NotFound.jsx";
 
+
+AOS.init();
 
 
 function App() {
@@ -58,17 +63,19 @@ function App() {
         />
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={authUser ? <HomePage /> : <Navigate to={"/login"} />} />
-            <Route path="profile" element={authUser ? <Profile /> : <Navigate to={"/login"} />} />
-            <Route path="setting" element={authUser ? <Setting /> : <Navigate to={"/login"} />} />
+            <Route index element={authUser ? <HomePage /> : <Navigate to={"/index"} />} />
+            <Route path="profile" element={authUser ? <Profile /> : <Navigate to={"/index"} />} />
+            <Route path="setting" element={authUser ? <Setting /> : <Navigate to={"/index"} />} />
           </Route>
-
+          <Route path="/index" element={!authUser ? <Index />: <Navigate to={'/'}/>} />
           <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
           <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to={"/"} />} />
           <Route element={<AdminRoute />}>
             <Route path="/addproblem" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
             <Route path="/profileadmin" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
+
         </Routes>
       </div>
 

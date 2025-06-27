@@ -52,16 +52,16 @@ function ProblemList() {
   }, [filteredProblems, currentPage]);
 
   return (
-    <div className=' flex flex-col justify-center border border-blue-600 mx-24 p-4 rounded-4xl shadow-xl/30 shadow-blue-500/50  mb-8'>
+    <div className=' flex flex-col justify-center  border-2 border-blue-600 mx-24 p-4 rounded-4xl shadow-xl/30 shadow-blue-500/50  mb-8 relative' data-aos="fade-up">
       <h2 className='text-center text-2xl'> Problems</h2>
-
+      <button className=' absolute top-4 right-4 btn btn-secondary rounded-xl '><FilePlus /> Create Playlist</button>
       <div className="divider"></div>
-      <div className='flex relative'>
+      <div className='flex justify-evenly'>
         {/* <fieldset className="fieldset mx-4 ml-4 w-48">
           <legend className="fieldset-legend text-lg">Select All</legend>
           <input type="checkbox" className="checkbox checkbox-secondary" />
         </fieldset> */}
-        <fieldset className="fieldset mx-4 w-48">
+        <fieldset className="fieldset mx-4 w-full">
           <legend className="fieldset-legend text-lg">Search by Title</legend>
           <input type="text" className="input"
             placeholder="Search..."
@@ -69,7 +69,7 @@ function ProblemList() {
             onChange={(e) => setSearch(e.target.value)} />
         </fieldset>
 
-        <fieldset className="fieldset mx-4 w-48">
+        <fieldset className="fieldset mx-4 w-full">
           <legend className="fieldset-legend text-lg">Difficulty</legend>
           <select className="select"
             value={difficulty}
@@ -81,7 +81,7 @@ function ProblemList() {
 
           </select>
         </fieldset>
-        <fieldset className="fieldset mx-4 w-48">
+        <fieldset className="fieldset mx-4 w-full">
           <legend className="fieldset-legend text-lg">Tag</legend>
           <select
             className="select"
@@ -94,7 +94,7 @@ function ProblemList() {
             ))}
           </select>
         </fieldset>
-        <button className=' absolute top-0 right-0 btn btn-secondary'><FilePlus /> Create Playlist</button>
+        
       </div>
       <div className="divider"></div>
       <div className="overflow-x-auto">
