@@ -34,7 +34,7 @@ function Navbar() {
                             <li><Link to={"/profileadmin"}> <User /> Admin Profile</Link></li> 
                             : <li><Link to={"/profile"}> <User /> Profile</Link></li>
                             }
-                            <Link to={"/profile"}> <User /> Profile</Link>
+                            <li><Link to={"/profile"}> <User /> Profile</Link></li>
                             {authUser?.role === "ADMIN" && (
                                 <>
                                 <li><Link to={"/addproblem"}><FilePlus2 /> Add Problem</Link> </li>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useForm, useFieldArray, Controller } from 'react-hook-form';
+import React from "react";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Plus,
@@ -12,17 +12,23 @@ import {
   Download,
 } from "lucide-react";
 import Editor from "@monaco-editor/react";
-import { useState } from 'react';
-import { axiosInstance } from "../libs/axios.js"
+import { useState } from "react";
+import { axiosInstance } from "../libs/axios.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { addProblemSchema } from '../page/schema/Schema.jsx';
-import { sampledpData, sampleStringProblem } from './sampleData.js';
+import { addProblemSchema } from "../page/schema/Schema.jsx";
+import { sampledpData, sampleStringProblem } from "./sampleData.js";
 
 function CreateProblemForm() {
-  const [sampleType, setSampleType] = useState("DP")
+  const [sampleType, setSampleType] = useState("DP");
   const navigation = useNavigate();
-  const { register, control, handleSubmit, reset, formState: { errors } } = useForm({
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(addProblemSchema),
     defaultValues: {
       testcases: [{ input: "", output: "" }],
@@ -42,18 +48,18 @@ function CreateProblemForm() {
         PYTHON: "# Add your reference solution here",
         JAVA: "// Add your reference solution here",
       },
-    }
-  })
+    },
+  });
 
   const loadSampleData = () => {
-    const sampleData = sampleType === "DP" ? sampledpData : sampleStringProblem
+    const sampleData = sampleType === "DP" ? sampledpData : sampleStringProblem;
 
     replaceTags(sampleData.tags.map((tag) => tag));
     replacetestcases(sampleData.testcases.map((tc) => tc));
 
     // Reset the form with sample data
     reset(sampleData);
-  }
+  };
 
   const {
     fields: testCaseFields,
@@ -79,45 +85,54 @@ function CreateProblemForm() {
 
   const onSubmit = async (value) => {
     try {
-      setIsLoading(true)
-      const res = await axiosInstance.post("/problems/create-problem", value)
+      setIsLoading(true);
+      const res = await axiosInstance.post("/problems/create-problem", value);
       console.log(res.data);
       toast.success(res.data.message || "Problem Created successfully ⚡ ");
       navigation("/");
-
     } catch (error) {
       console.log(error);
-      toast.error("Error creating problem")
-    }
-    finally {
+      toast.error("Error creating problem");
+    } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   const languageEditor = ["JAVASCRIPT", "PYTHON", "JAVA"];
-  
+
   return (
-    <div className='container mx-auto py-8 px-4 max-w-7xl'>
-      <h2><FileText className="w-6 h-6 md:w-8 md:h-8 text-primary" /> Create Problem</h2>
+    <div className="container mx-auto py-8 px-4 max-w-7xl">
+      <h2>
+        <FileText className="w-6 h-6 md:w-8 md:h-8 text-primary" /> Create
+        Problem
+      </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         <div className="tabs tabs-box">
           {/* // tab 1 */}
-          <input type="radio" name="my_tabs_6" className="tab" aria-label=" Basic Info" defaultChecked />
+          <input
+            type="radio"
+            name="my_tabs_6"
+            className="tab"
+            aria-label=" Basic Info"
+            defaultChecked
+          />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             <div className="flex flex-col md:flex-row gap-3 mt-4 md:mt-0">
               <div className="join">
                 <button
                   type="button"
-                  className={`btn join-item ${sampleType === "DP" ? "btn-active" : ""
-                    }`}
+                  className={`btn join-item ${
+                    sampleType === "DP" ? "btn-active" : ""
+                  }`}
                   onClick={() => setSampleType("array")}
                 >
                   DP Problem
                 </button>
                 <button
                   type="button"
-                  className={`btn join-item ${sampleType === "string" ? "btn-active" : ""
-                    }`}
+                  className={`btn join-item ${
+                    sampleType === "string" ? "btn-active" : ""
+                  }`}
                   onClick={() => setSampleType("string")}
                 >
                   String Problem
@@ -198,10 +213,14 @@ function CreateProblemForm() {
                 )}
               </div>
             </div>
-
           </div>
 
-          <input type="radio" name="my_tabs_6" className="tab" aria-label="Add Tags" />
+          <input
+            type="radio"
+            name="my_tabs_6"
+            className="tab"
+            aria-label="Add Tags"
+          />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             {/* Tags */}
             <div className="card bg-base-200 p-4 md:p-6 shadow-md">
@@ -247,11 +266,16 @@ function CreateProblemForm() {
               )}
             </div>
           </div>
-
-          <input type="radio" name="my_tabs_6" className="tab" aria-label="Test Cases" />
+          {/* Test Cases TAB */}
+          <input
+            type="radio"
+            name="my_tabs_6"
+            className="tab"
+            aria-label="Test Cases"
+          />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             {/* Test Cases */}
-            <div className="card bg-base-200 p-4 md:p-6 shadow-md">
+            <div className="card bg-base-200 p-4 md:p-6 shadow-md rounded-4xl">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5" />
@@ -334,44 +358,42 @@ function CreateProblemForm() {
                 </div>
               )}
             </div>
-
           </div>
 
-          <input type="radio" name="my_tabs_6" className="tab" aria-label="Template" />
+          {/* Templates TAB */}
+          <input
+            type="radio"
+            name="my_tabs_6"
+            className="tab"
+            aria-label="Template"
+          />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             {/* Code Editor Sections */}
-            <div className="space-y-8">
-              <div className="tabs tabs-border">
-                {languageEditor.map((language, index) => (
-                  <div key={`tabs-${index}`}>
-                    <input type="radio" 
-                      name="my_tabs_3"
-                      className="tab hover:animate-bounce"
-                      aria-label={language}
-                      defaultChecked={index === 0}
-                      id={`tab-${index}`} />
-                       
-                    <div className="tab-content bg-base-100 border-base-300 p-6" >
-                      <div className="card bg-base-200 p-4 md:p-6 shadow-md">
-                        <h3 className="text-xl md:text-xl font-semibold mb-6 flex items-center gap-2">
+            <div className="space-y-8 tabs tabs-border">
+              {languageEditor.map((language, index) => (
+                <React.Fragment key={language-index}>
+                  <input type="radio" name="language" className="tab" aria-label={language} defaultChecked={index === 0} />
+                    <div className="tab-content border-base-300 bg-base-100 rounded-4xl">
+                      <div key={language} className="card bg-base-200 p-4 md:p-6 shadow-md rounded-4xl">
+                        <h3 className="text-lg md:text-xl font-semibold mb-6 flex items-center gap-2">
                           <Code2 className="w-5 h-5" />
                           {language}
                         </h3>
-
-                        <div className="space-y-6">
+      
+                        <div className="space-y-6 grid grid-cols-2 gap-2 ">
                           {/* Starter Code */}
-                          <div className="card bg-base-100 shadow-md">
+                          <div className="card bg-base-100 shadow-md rounded-2xl">
                             <div className="card-body p-4 md:p-6">
                               <h4 className="font-semibold text-base md:text-lg mb-4">
                                 Starter Code Template
                               </h4>
-                              <div className="border rounded-md overflow-hidden">
+                              <div className="border rounded-2xl overflow-hidden">
                                 <Controller
                                   name={`codeSnippets.${language}`}
                                   control={control}
                                   render={({ field }) => (
                                     <Editor
-                                      height="300px"
+                                      height="400px"
                                       language={language.toLowerCase()}
                                       theme="vs-dark"
                                       value={field.value}
@@ -397,21 +419,21 @@ function CreateProblemForm() {
                               )}
                             </div>
                           </div>
-
+      
                           {/* Reference Solution */}
-                          <div className="card bg-base-100 shadow-md">
+                          <div className="card bg-base-100 shadow-md rounded-2xl">
                             <div className="card-body p-4 md:p-6">
                               <h4 className="font-semibold text-base md:text-lg mb-4 flex items-center gap-2">
                                 <CheckCircle2 className="w-5 h-5 text-success" />
                                 Reference Solution
                               </h4>
-                              <div className="border rounded-md overflow-hidden">
+                              <div className="border rounded-2xl overflow-hidden">
                                 <Controller
                                   name={`referenceSolutions.${language}`}
                                   control={control}
                                   render={({ field }) => (
                                     <Editor
-                                      height="300px"
+                                      height="400px"
                                       language={language.toLowerCase()}
                                       theme="vs-dark"
                                       value={field.value}
@@ -437,9 +459,9 @@ function CreateProblemForm() {
                               )}
                             </div>
                           </div>
-
+      
                           {/* Examples */}
-                          <div className="card bg-base-100 shadow-md">
+                          <div className="card bg-base-100 shadow-md col-span-2 rounded-2xl">
                             <div className="card-body p-4 md:p-6">
                               <h4 className="font-semibold text-base md:text-lg mb-4">
                                 Example
@@ -501,19 +523,21 @@ function CreateProblemForm() {
                         </div>
                       </div>
                     </div>
-
-                  </div>
-
-                ))}
-              </div>
+                </React.Fragment>
+                
+              ))}
             </div>
           </div>
 
-
-          <input type="radio" name="my_tabs_6" className="tab" aria-label="Additional Information" />
+          <input
+            type="radio"
+            name="my_tabs_6"
+            className="tab"
+            aria-label="Additional Information"
+          />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             {/* Additional Information */}
-            <div className="card bg-base-200 p-4 md:p-6 shadow-md">
+            <div className="card bg-base-200 p-4 md:p-6 shadow-md rounded-4xl">
               <h3 className="text-lg md:text-xl font-semibold mb-6 flex items-center gap-2">
                 <Lightbulb className="w-5 h-5 text-warning" />
                 Additional Information
@@ -576,13 +600,10 @@ function CreateProblemForm() {
               </button>
             </div>
           </div>
-
         </div>
-
       </form>
     </div>
-
-  )
+  );
 }
 
-export default CreateProblemForm
+export default CreateProblemForm;
