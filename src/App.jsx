@@ -16,6 +16,7 @@ import Profile from "./components/profile.jsx";
 import Setting from "./components/Setting.jsx";
 import Index from "./page/index.jsx";
 import NotFound from "./page/NotFound.jsx";
+import ProblemPage from "./page/ProblemPage.jsx";
 
 
 AOS.init();
@@ -66,6 +67,8 @@ function App() {
             <Route index element={authUser ? <HomePage /> : <Navigate to={"/index"} />} />
             <Route path="profile" element={authUser ? <Profile /> : <Navigate to={"/index"} />} />
             <Route path="setting" element={authUser ? <Setting /> : <Navigate to={"/index"} />} />
+            <Route path="problem/:id" element={authUser ? <ProblemPage /> : <Navigate to={"/login"} />} />
+
           </Route>
           <Route path="/index" element={!authUser ? <Index />: <Navigate to={'/'}/>} />
           <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
