@@ -37,12 +37,7 @@ function ProblemList() {
         difficulty === "ALL" || problem.difficulty === difficulty;
       const tagMatch =
         selectedTag === "ALL" || problem.tags?.includes(selectedTag);
-      console.log({
-        title: problem.title,
-        titleMatch,
-        difficultyMatch,
-        tagMatch,
-      });
+      
       return titleMatch && difficultyMatch && tagMatch;
     });
   }, [problems, search, selectedTag, difficulty]);
