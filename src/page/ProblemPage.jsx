@@ -49,12 +49,13 @@ const ProblemPage = () => {
   }
 
   const handleRunCode = (e) => {
-    e.prevevtDefault();
+    e.preventDefault();
 
     try {
       const language_Id = getLanguageId(selectedLanguage);
       const stdin = problem.testcases.map((tc) => tc.input)
       const expected_outputs = problem.testcases.map((tc) => tc.output);
+      console.log("outputs", problem.testcases.map((tc) => tc.output))
       executeCode(code, language_Id, stdin, expected_outputs, id)
 
     } catch (error) {

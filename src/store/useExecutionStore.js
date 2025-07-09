@@ -7,10 +7,10 @@ export const useExecutionStore = create((set) => ({
     isExecuting: false,
     submission: null,
 
-    executeCode: async (source_code, language_id, stdin, expected_output, problemId) => {
+    executeCode: async (source_code, language_id, stdin, expected_outputs, problemId) => {
         try {
             set({isExecuting:true})
-            const res = await axiosInstance.post("/execute-code", { source_code, language_id, stdin, expected_output, problemId })
+            const res = await axiosInstance.post("/execute-code", { source_code, language_id, stdin, expected_outputs, problemId })
             set({ submission: res.data.submission })
             toast.success("Code Executed Successfully");
         } catch (error) {
