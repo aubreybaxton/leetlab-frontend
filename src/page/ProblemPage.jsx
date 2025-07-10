@@ -7,6 +7,8 @@ import { Code } from "lucide-react";
 import { useProblemStore } from "../store/useProblemStore.js";
 import { getLanguageId } from "../libs/lang.js";
 import { useExecutionStore } from "../store/useExecutionStore.js";
+import SubmissionResult from "../components/Submission.jsx";
+import SubmissionList from "../components/SubmissionList.jsx";
 
 
 
@@ -21,7 +23,7 @@ const ProblemPage = () => {
   const [isBookmarked, SetIsBookmarked] = useState(false)
   const [testcases, setTestcases] = useState([]);
 
-  const { Submission, isExecuting, executeCode } = useExecutionStore()
+  const { submission, isExecuting, executeCode } = useExecutionStore()
 
 
   useEffect(() => {
@@ -150,7 +152,7 @@ const ProblemPage = () => {
             <input type="radio" name="my_tabs_3" className="tab " aria-label="Hints" />
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.hints}</div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Submissions" />
-            <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.description}</div>
+            <div className="tab-content bg-base-100 border-base-300 p-6"><SubmissionList/></div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Description" />
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.description}</div>
           </div>
@@ -182,7 +184,11 @@ const ProblemPage = () => {
               <button className="btn btn-secondary" onClick={handleRunCode} disabled={isExecuting}> Run </button>
               <button className="btn btn-success"> Submit </button>
             </div>
+            {/*  Submisstion */}
 
+            <div>
+              {submission && <SubmissionResult  submission={submission}/>}
+            </div>
           </div>
 
         </div>

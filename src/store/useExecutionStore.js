@@ -11,10 +11,14 @@ export const useExecutionStore = create((set) => ({
         try {
             set({isExecuting:true})
             const res = await axiosInstance.post("/execute-code", { source_code, language_id, stdin, expected_outputs, problemId })
+            console.log("res.data", res.data)
             set({ submission: res.data.submission })
-            toast.success("Code Executed Successfully");
+            toast.success(res.data.message);
         } catch (error) {
             console.log("error while", error)
+            toast.error("Error While Executing");
+        } finally{
+            set({isExecuting:false})
         }
     }
 }))

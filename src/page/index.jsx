@@ -26,65 +26,148 @@ function Index() {
           <div className="max-w-lg">
             <h1 className="text-4xl font-bold pb-4">Welcome to the <strong className='text-indigo-600 tooltip tooltip-top' data-tip="CodeLab is the Love for the Developers">{"<"} CodeLab {">"} </strong></h1>
             <p className='text-xl pb-4'>Platform is Inspired by LeetCode, and designed to provide the <strong>Best-In-Class feature</strong> and <strong> Best Coding Practices</strong> to improve the Knowledge and User Experience.</p>
-            <button className="btn btn-primary">Get Started</button>
+            {/* <button className="btn btn-primary">Get Started</button> */}
           </div>
         </div>
       </div>
+      {/*  Features Sections */}
+      <div className='bg-base-300 min-h-screen'>
+        <div className='text-center text-2xl p-4'> Features</div>
+        <div className='divider'></div>
+        <div className='grid grid-cols-3  place-items-center min-w-96'>
+          {/* Card 1 */}
+          <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
+              border-2 border-blue-500 rounded-4xl transition-transform
+              min-w-md min-h-80
+               duration-200 hover:scale-105" data-aos="zoom-in-right">
+            <div className="card-body ">
+              <h2 className="card-title justify-center ">Languages Support</h2>
+              <div className='divider m-2'></div>
+              <div className='text-lg pl-2' >
+                <ul className="list-disc pl-5">
+                  <li>Python</li>
+                  <li>JavaScript</li>
+                  <li>Java</li>
+                </ul>
 
-      <div className="hero bg-base-200 min-h-screen">
-        <div className="hero-content text-center">
-          <h2> Features</h2>
-          <div className='divider'></div>
-          <div className='grid grid-cols-3'>
-            <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
-          border border-blue-500 rounded-2xl transition-transform duration-200 hover:scale-105" data-aos="zoom-in-right">
-              <div className="card-body ">
-                <h2 className="card-title  ">
-
-                </h2>
-                <p className='text-2xl text-center'> </p>
-                <p className='text-lg'> Email : </p>
-                <p className='text-lg'> Role :</p>
-
-                <div className="card-actions justify-end">
-                  <button className="btn btn-success rounded-2xl">Show Activity</button>
-                </div>
               </div>
-            </div>
+              <div className='divider'> Upcoming support</div>
+              <div className="font-mono pl-4">
+                <ul className="list-disc pl-5">
+                  <li>C</li>
+                  <li>C++</li>
+                </ul>
 
-            <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
-          border border-blue-500 rounded-2xl transition-transform duration-200 hover:scale-105" data-aos="zoom-in-right">
-              <div className="card-body ">
-                <h2 className="card-title  ">
-
-                </h2>
-                <p className='text-2xl text-center'> </p>
-                <p className='text-lg'> Email : </p>
-                <p className='text-lg'> Role :</p>
-
-                <div className="card-actions justify-end">
-                  <button className="btn btn-success rounded-2xl">Show Activity</button>
-                </div>
-              </div>
-            </div>
-            <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
-          border border-blue-500 rounded-2xl transition-transform duration-200 hover:scale-105" data-aos="zoom-in-right">
-              <div className="card-body ">
-                <h2 className="card-title  ">
-
-                </h2>
-                <p className='text-2xl text-center'> </p>
-                <p className='text-lg'> Email : </p>
-                <p className='text-lg'> Role :</p>
-
-                <div className="card-actions justify-end">
-                  <button className="btn btn-success rounded-2xl">Show Activity</button>
-                </div>
               </div>
             </div>
           </div>
+          {/* Card 2 */}
+          <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
+              border-2 border-blue-500 rounded-4xl transition-transform
+              min-w-md min-h-80
+               duration-200 hover:scale-105" data-aos="zoom-in-right">
+            <div className="card-body ">
+              <h2 className="card-title justify-center ">Track Progress</h2>
+              <div className='divider m-2'></div>
+              <div className='text-lg pl-2' >
+                <ul className="list-disc pl-5">
+                  <li>Daily Check-In</li>
+                  <li>Get Badges and Rankings</li>
+                  <li>Check Solved Problem</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          {/* Card 3 */}
+          <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
+              border-2 border-blue-500 rounded-4xl transition-transform
+              min-w-md min-h-80
+               duration-200 hover:scale-105" data-aos="zoom-in-left">
+            <div className="card-body ">
+              <h2 className="card-title  justify-center"> Contest</h2>
+              <div className='divider m-2'></div>
+              <div className='text-lg pl-2' >
+                <ul className="list-disc pl-5">
+                  <li>Participate in Contest</li>
+                  <li>Get Certificates </li>
+                  <li>To Meet the People</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
+              border-2 border-blue-500 rounded-4xl transition-transform
+              min-w-md min-h-80
+               duration-200 hover:scale-105" data-aos="zoom-in-right">
+            <div className="card-body ">
+              <h2 className="card-title  justify-center"> Contest</h2>
+              <div className='divider m-2'></div>
+              <div className='text-lg pl-2' >
+                <ul className="list-disc pl-5">
+                  <li>Participate in Contest</li>
+                  <li>Get Certificates </li>
+                  <li>To Meet the People</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Card 5 */}
+          <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
+              border-2 border-blue-500 rounded-4xl transition-transform
+              min-w-md min-h-80
+               duration-200 hover:scale-105" data-aos="zoom-in-up">
+            <div className="card-body ">
+              <h2 className="card-title  justify-center"> Contest</h2>
+              <div className='divider m-2'></div>
+              <div className='text-lg pl-2' >
+                <ul className="list-disc pl-5">
+                  <li>Participate in Contest</li>
+                  <li>Get Certificates </li>
+                  <li>To Meet the People</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Card 6 */}
+          <div className="card bg-base-100 shadow-2xl m-4 row-span-2 
+              border-2 border-blue-500 rounded-4xl transition-transform
+              min-w-md min-h-80
+               duration-200 hover:scale-105" data-aos="zoom-in-left">
+            <div className="card-body ">
+              <h2 className="card-title  justify-center"> Contest</h2>
+              <div className='divider m-2'></div>
+              <div className='text-lg pl-2' >
+                <ul className="list-disc pl-5">
+                  <li>Participate in Contest</li>
+                  <li>Get Certificates </li>
+                  <li>To Meet the People</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
+
+      {/* Dashboard */}
+      <div className='bg-base-200 min-h-screen'>
+        <div className="mockup-browser m-16 rounded-4xl bg-base-100 p-4 shadow-2xl" data-aos='zoom-in'>
+          <div className="mockup-browser-toolbar bg-base-300 rounded-2xl p-4">
+            <div className="input">https://leetlab.com</div>
+          </div>
+          <div className="grid place-content-center h-160">Hello!</div>
+        </div>
+      </div>
+      {/* Footer */}
       <footer className="footer footer-horizontal footer-center bg-indigo-500 text-primary-content p-10">
         <aside>
           <svg
