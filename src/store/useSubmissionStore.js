@@ -11,7 +11,7 @@ export const useSubmissionStore= create((set)=>({
     getAllSubmissionsByUser:async () => {
         try {
             set({isLoading:true})
-            const res= await axiosInstance("/get-all-submission")
+            const res= await axiosInstance.get("/submission/get-all-submission")
             set({allSubmissions:res.data.userSubmission})
             toast.success(res.data.message)
         } catch (error) {
@@ -25,7 +25,7 @@ export const useSubmissionStore= create((set)=>({
     getSubmissionByUserAndProblem:async (id) => {
         try {
             set({isLoading:true})
-            const res= await axiosInstance(`/get-submission/${id}`)
+            const res= await axiosInstance.get(`/submission/get-submission/${id}`)
             set({submissionByProblem:res.data.submissionbyProblem})
             toast.success(res.data.message)
         } catch (error) {
@@ -40,7 +40,7 @@ export const useSubmissionStore= create((set)=>({
     getSubmissionCount: async (id) => {
         try {
             set({isLoading:true})
-            const res= await axiosInstance(`/get-submission-count/${id}`)
+            const res= await axiosInstance.get(`/submission/get-submission-count/${id}`)
             set({submissionCount:res.data.submissionCount})
             toast.success(res.data.message)
         } catch (error) {

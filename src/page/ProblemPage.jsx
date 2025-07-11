@@ -7,6 +7,7 @@ import { Code } from "lucide-react";
 import { useProblemStore } from "../store/useProblemStore.js";
 import { getLanguageId } from "../libs/lang.js";
 import { useExecutionStore } from "../store/useExecutionStore.js";
+import { useSubmissionStore } from "../store/useSubmissionStore.js";
 import SubmissionResult from "../components/Submission.jsx";
 import SubmissionList from "../components/SubmissionList.jsx";
 
@@ -16,6 +17,7 @@ import SubmissionList from "../components/SubmissionList.jsx";
 const ProblemPage = () => {
   const { id } = useParams();
   const { getProblemById, problem, isProblemLoading } = useProblemStore();
+  const { getSubmissionCount, submissionCount, submissionByProblem, isLoading , getSubmissionByUserAndProblem} = useSubmissionStore();
 
   const [code, setCode] = useState("")
   // const [activeTab, setActiveTab] = useState("description");
@@ -28,6 +30,9 @@ const ProblemPage = () => {
 
   useEffect(() => {
     getProblemById(id)
+    getSubmissionCount(id)
+    getSubmissionByUserAndProblem(id)
+
   }, [id])
 
   useEffect(() => {
@@ -85,7 +90,15 @@ const ProblemPage = () => {
           </div>
         </div>
         <hr className="my-2" />
-
+        <div className="flex bg-base-300 m-4 p-4 rounded-2xl">
+          <div className="px-4">Updated :{problem&& new Date(problem.updatedAt).toLocaleString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          })}
+          </div>
+          <div className="px-4"> Submissions : {submissionCount}</div>
+        </div>
         <div className="grid grid-cols-2 gap-2 p-4">
           <div className="tabs tabs-box rounded-2xl">
             <input type="radio" name="my_tabs_3" className="tab rounded-2xl" aria-label="Description" defaultChecked />
@@ -152,7 +165,7 @@ const ProblemPage = () => {
             <input type="radio" name="my_tabs_3" className="tab " aria-label="Hints" />
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.hints}</div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Submissions" />
-            <div className="tab-content bg-base-100 border-base-300 p-6"><SubmissionList/></div>
+            <div className="tab-content bg-base-100 border-base-300 p-6"><SubmissionList submissionByProblem={submissionByProblem} /></div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Description" />
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.description}</div>
           </div>
@@ -187,7 +200,7 @@ const ProblemPage = () => {
             {/*  Submisstion */}
 
             <div>
-              {submission && <SubmissionResult  submission={submission}/>}
+              {submission && <SubmissionResult submission={submission} />}
             </div>
           </div>
 
