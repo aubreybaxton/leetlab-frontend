@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Editor from "@monaco-editor/react";
-import { Code } from "lucide-react";
+import { Code, SquareChevronRight } from "lucide-react";
 
 import { useProblemStore } from "../store/useProblemStore.js";
 import { getLanguageId } from "../libs/lang.js";
@@ -17,7 +17,7 @@ import SubmissionList from "../components/SubmissionList.jsx";
 const ProblemPage = () => {
   const { id } = useParams();
   const { getProblemById, problem, isProblemLoading } = useProblemStore();
-  const { getSubmissionCount, submissionCount, submissionByProblem, isLoading , getSubmissionByUserAndProblem} = useSubmissionStore();
+  const { getSubmissionCount, submissionCount, submissionByProblem, isLoading, getSubmissionByUserAndProblem } = useSubmissionStore();
 
   const [code, setCode] = useState("")
   // const [activeTab, setActiveTab] = useState("description");
@@ -48,6 +48,11 @@ const ProblemPage = () => {
       )
     }
   }, [problem, selectedLanguage])
+  const checkSubmissionByProblem = () => {
+    if (submission.problemId === problem.id) {
+      return <SubmissionResult submission={submission} />
+    }
+  }
 
   const handleLanguageChange = (e) => {
     const lang = e.target.value
@@ -91,7 +96,7 @@ const ProblemPage = () => {
         </div>
         <hr className="my-2" />
         <div className="flex bg-base-300 m-4 p-4 rounded-2xl">
-          <div className="px-4">Updated :{problem&& new Date(problem.updatedAt).toLocaleString("en-US", {
+          <div className="px-4">Updated :{problem && new Date(problem.updatedAt).toLocaleString("en-US", {
             year: "numeric",
             month: "long",
             day: "numeric"
@@ -166,10 +171,11 @@ const ProblemPage = () => {
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.hints}</div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Submissions" />
             <div className="tab-content bg-base-100 border-base-300 p-6"><SubmissionList submissionByProblem={submissionByProblem} /></div>
-            <input type="radio" name="my_tabs_3" className="tab" aria-label="Description" />
-            <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.description}</div>
+            <input type="radio" name="my_tabs_3" className="tab" aria-label="Editorial" />
+            <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.editorial}</div>
           </div>
           <div className=" shadow-2xl rounded-2xl overflow-hidden">
+            <div className="p-2 flex"><SquareChevronRight /> Editor</div>
             <Editor
               className="rounded-2xl overflow-hidden "
               lineDe
@@ -200,7 +206,7 @@ const ProblemPage = () => {
             {/*  Submisstion */}
 
             <div>
-              {submission && <SubmissionResult submission={submission} />}
+              {submission && checkSubmissionByProblem(submission.id) }
             </div>
           </div>
 

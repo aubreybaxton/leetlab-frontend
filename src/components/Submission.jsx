@@ -20,6 +20,7 @@ function SubmissionResult({ submission }) {
 
     return (
         <div className='flex justify-center m-4'>
+
             <div className="grid grid-cols-4 gap-4 ">
                 {/* grid card 1 */}
                 <div className="card bg-base-200 shadow-lg text-center">
@@ -86,10 +87,10 @@ function SubmissionResult({ submission }) {
                                                     <CheckCircle2 />
                                                     Passed
                                                 </div> :
-                                                 <div>
-                                                    <XCircle/>
+                                                <div>
+                                                    <XCircle />
                                                     Failed
-                                                    </div>}</td>
+                                                </div>}</td>
                                             <td>{tc.expected}</td>
                                             <td>{tc.stdout}</td>
                                             <td>{tc.memory}</td>
@@ -101,6 +102,14 @@ function SubmissionResult({ submission }) {
                             ))}
                         </div>
                     </div>
+                </div>
+                <div className="p-4 card bg-base-200 shadow-lg text-center col-span-4">Submit :{new Date(submission.updatedAt).toLocaleString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: '2-digit',
+                    minute: '2-digit',
+                })}
                 </div>
             </div>
         </div>

@@ -20,12 +20,13 @@ function SubmissionList({ submissionByProblem }) {
         <>
             {submissionByProblem && submissionByProblem.map((eachSubmission) => (
 
-                <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+                <div className="collapse collapse-arrow bg-base-100 border border-base-300" key={eachSubmission.id}>
                     <input type="radio" name="my-accordion-2" />
                     <div className="collapse-title font-semibold flex ">
 
-                        <div> Language: {eachSubmission.language} </div>
-                        <div> Status :<div className={eachSubmission.status=== "accepted"? "badge-success":"badge-error"}>{eachSubmission.status}</div> </div>
+                        <div> {eachSubmission.language} </div>
+                        <div className={eachSubmission.status=== "Accepted"? " badge badge-success":" badge badge-error"}>{eachSubmission.status}</div>
+                        <div> </div>
                         <div> Time : </div>
                     </div>
 
