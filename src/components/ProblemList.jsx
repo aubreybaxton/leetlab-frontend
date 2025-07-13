@@ -9,6 +9,7 @@ import {
   BookmarkPlus,
   Ellipsis,
 } from "lucide-react";
+import PlaylistForm from "./PlaylistForm.jsx";
 
 function ProblemList() {
   const { problems } = useProblemStore();
@@ -37,7 +38,7 @@ function ProblemList() {
         difficulty === "ALL" || problem.difficulty === difficulty;
       const tagMatch =
         selectedTag === "ALL" || problem.tags?.includes(selectedTag);
-      
+
       return titleMatch && difficultyMatch && tagMatch;
     });
   }, [problems, search, selectedTag, difficulty]);
@@ -66,9 +67,24 @@ function ProblemList() {
       data-aos="fade-up"
     >
       <h2 className="text-center text-2xl"> Problems</h2>
-      <button className=" absolute top-4 right-4 btn btn-secondary rounded-xl ">
+      {/* Playlist button */}
+      <button className=" absolute top-4 right-4 btn btn-secondary rounded-xl "
+        onClick={() => document.getElementById('playlistModal').showModal()}
+      >
         <FilePlus /> Create Playlist
       </button>
+      <dialog id="playlistModal" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+         <PlaylistForm/>
+
+        </div>
+      </dialog>
+
+
       <div className="divider"></div>
       <div className="flex justify-evenly">
         {/* <fieldset className="fieldset mx-4 ml-4 w-48">
@@ -178,13 +194,12 @@ function ProblemList() {
                     <td>
                       <div
                         className={`badge badge-soft
-                        ${
-                          problem.difficulty === "EASY"
-                          ? "badge-success"
+                        ${problem.difficulty === "EASY"
+                            ? "badge-success"
                             : problem.difficulty === "MEDIUM"
                               ? "badge-warning"
                               : "badge-error"
-                        }`}
+                          }`}
                       >
                         {problem.difficulty}
                       </div>

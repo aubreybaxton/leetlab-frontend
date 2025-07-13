@@ -17,15 +17,17 @@ import SubmissionList from "../components/SubmissionList.jsx";
 const ProblemPage = () => {
   const { id } = useParams();
   const { getProblemById, problem, isProblemLoading } = useProblemStore();
-  const { getSubmissionCount, submissionCount, submissionByProblem, isLoading, getSubmissionByUserAndProblem } = useSubmissionStore();
+  const { getSubmissionCount, submissionCount, submissionByProblem,isLoading,getSubmissionByUserAndProblem }= useSubmissionStore();
+  const { submission, isExecuting, executeCode } = useExecutionStore();
 
+  console.log("submissionByProblem == problemPage",submissionByProblem)
   const [code, setCode] = useState("")
   // const [activeTab, setActiveTab] = useState("description");
   const [selectedLanguage, setSelectedLanguage] = useState("JAVASCRIPT");
   const [isBookmarked, SetIsBookmarked] = useState(false)
   const [testcases, setTestcases] = useState([]);
 
-  const { submission, isExecuting, executeCode } = useExecutionStore()
+  
 
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const ProblemPage = () => {
     getSubmissionCount(id)
     getSubmissionByUserAndProblem(id)
 
-  }, [id])
+  }, [id,submission])
 
   useEffect(() => {
     if (problem) {
@@ -170,7 +172,9 @@ const ProblemPage = () => {
             <input type="radio" name="my_tabs_3" className="tab " aria-label="Hints" />
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.hints}</div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Submissions" />
-            <div className="tab-content bg-base-100 border-base-300 p-6"><SubmissionList submissionByProblem={submissionByProblem} /></div>
+            <div className="tab-content bg-base-100 border-base-300 p-6">
+              <SubmissionList submissionByProblem={submissionByProblem} />
+            </div>
             <input type="radio" name="my_tabs_3" className="tab" aria-label="Editorial" />
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.editorial}</div>
           </div>
@@ -206,7 +210,7 @@ const ProblemPage = () => {
             {/*  Submisstion */}
 
             <div>
-              {submission && checkSubmissionByProblem(submission.id) }
+              {submission && checkSubmissionByProblem(submission.id)}
             </div>
           </div>
 

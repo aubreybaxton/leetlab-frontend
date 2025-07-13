@@ -1,9 +1,19 @@
-import React, { useMemo } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
+import React, { useEffect, useMemo } from 'react';
+import { useAuthStore } from '../store/useAuthStore.js';
+import {useSubmissionStore} from '../store/useSubmissionStore.js';
 
 
 function Profile() {
   const { authUser } = useAuthStore();
+
+  const {allSubmissions, getAllSubmissionsByUser} = useSubmissionStore();
+
+  useEffect(()=>{
+    getAllSubmissionsByUser()
+  },[])
+
+  console.log("All submission== profile page", allSubmissions)
+
   function capitalizeName(name) {
     if (!name) return '';
     return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
@@ -77,7 +87,7 @@ function Profile() {
           <div className="card card-md shadow-2xl rounded-2xl bg-teal-400">
             <div className="card-body">
               <h2 className="card-title text-center">Medium </h2>
-              <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+              <p></p>
             </div>
           </div>
 

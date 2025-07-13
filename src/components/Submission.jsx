@@ -7,8 +7,8 @@ function SubmissionResult({ submission }) {
     const memoryArray = JSON.parse(submission.memory || "[]")
     const timeArray = JSON.parse(submission.time || '[]')
 
-    const avgMemory = memoryArray.map((m) => (parseFloat(m))).reduce((a, b) => a + b, 0);
-    const avgTime = timeArray.map((t) => (parseFloat(t))).reduce((a, b) => a + b, 0);
+    const avgMemory = memoryArray.map((m) => (parseFloat(m))).reduce((a, b) => a + b, 0)/memoryArray.length;
+    const avgTime = timeArray.map((t) => (parseFloat(t))).reduce((a, b) => a + b, 0)/timeArray.length;
     console.log("average", avgMemory)
     console.log("average", avgTime)
 
@@ -37,7 +37,7 @@ function SubmissionResult({ submission }) {
                     <div className="card-body p-4">
                         <h3 className="card-title text-sm justify-center">Average Memory</h3>
                         <div className="text-lg font-bold">
-                            {avgMemory}
+                            {avgMemory.toFixed(3)}
                         </div>
                     </div>
                 </div>

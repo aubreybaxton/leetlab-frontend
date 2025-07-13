@@ -18,7 +18,6 @@ export const useProblemStore = create((set) => ({
         } catch (error) {
             console.log("Error getting All Problems", error);
             toast.error("Error getting All Problems")
-
         }
         finally {
             set({ isProblemsLoading: false })
