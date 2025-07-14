@@ -51,7 +51,7 @@ function ProblemList() {
   //      .filter((problem) => selectedTag === "ALL" ? true : problem.tags?.includes(selectedTag))
   //  }, [problems, search, selectedTag, difficulty])
 
-  const itemPerPage = 5;
+  const itemPerPage = 10;
   const totalPages = Math.ceil(filteredProblems.length / itemPerPage);
 
   const paginatedProblems = useMemo(() => {

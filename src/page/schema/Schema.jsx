@@ -57,3 +57,8 @@ export const addProblemSchema= z.object({
     }),
   });
   
+
+  export const playlistFormSchema= z.object({
+    name:z.string().min(3, "Enter valid name"),
+    description:z.string().min(3, "Enter the valid description")
+  })
