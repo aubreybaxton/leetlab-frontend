@@ -1,18 +1,27 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { playlistFormSchema } from '../page/schema/Schema.jsx';
+import { usePlaylistStore } from '../store/usePlaylistStore.js';
 
 function PlaylistForm() {
+    
+    const{createPlaylist}=usePlaylistStore();
     const { 
         register,
         reset,
         handleSubmit
-        , formState: errors
+        , formState: {errors},
     } = useForm({ resolver: zodResolver(playlistFormSchema) })
+
+    const onSubmit= async (value) => {
+        console.log(value)
+        createPlaylist(value);
+        reset();
+    }
     return (
         <>
-            <form onSubmit={handleSubmit(onPlaylistSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div>Create Playlist</div>
 
                 <fieldset className="fieldset">

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useProblemStore } from "../store/useProblemStore.js";
 import { useAuthStore } from "../store/useAuthStore.js";
+import Modal from "../page/Modal.jsx";
 import {
   PencilLine,
   Trash2,
@@ -11,13 +12,18 @@ import {
 } from "lucide-react";
 import PlaylistForm from "./PlaylistForm.jsx";
 
+
+
 function ProblemList() {
+  
+
   const { problems } = useProblemStore();
   const { authUser } = useAuthStore();
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("ALL");
   const [selectedTag, setSelectedTag] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
+
 
   const difficultyLevel = ["EASY", "MEDIUM", "HARD"];
 
@@ -67,23 +73,24 @@ function ProblemList() {
       data-aos="fade-up"
     >
       <h2 className="text-center text-2xl"> Problems</h2>
+
       {/* Playlist button */}
       <button className=" absolute top-4 right-4 btn btn-secondary rounded-xl "
         onClick={() => document.getElementById('playlistModal').showModal()}
       >
         <FilePlus /> Create Playlist
       </button>
+
       <dialog id="playlistModal" className="modal">
         <div className="modal-box">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
-         <PlaylistForm/>
+          <PlaylistForm />
 
         </div>
       </dialog>
-
 
       <div className="divider"></div>
       <div className="flex justify-evenly">
@@ -177,16 +184,10 @@ function ProblemList() {
                       <div className="flex items-center gap-3">
                         <div>
                           <div className="font-bold">
-                            <Link to={`/problem/${problem.id}`}>
-                              {" "}
-                              {problem.title}
-                            </Link>
+                            <Link to={`/problem/${problem.id}`}>{problem.title}</Link>
                           </div>
                           {isSolved && (
-                            <div className="badge badge-sm badge-soft badge-accent">
-                              {" "}
-                              Solved
-                            </div>
+                            <div className="badge badge-sm badge-soft badge-accent">Solved</div>
                           )}
                         </div>
                       </div>
@@ -206,79 +207,27 @@ function ProblemList() {
                     </td>
                     <td>
                       {problem.tags.map((tag) => (
-                        <div
-                          className="badge badge-outline badge-primary m-0.5"
-                          key={tag}
-                        >
-                          {tag}
-                        </div>
+                        <div className="badge badge-outline badge-primary m-0.5" key={tag} >{tag}</div>
                       ))}
                     </td>
                     <th>
-                      <div className="tooltip">
-                        <div className="tooltip-content">
-                          <div className=" text-orange-400 text-md font-black">
-                            {" "}
-                            Edit{" "}
-                          </div>
-                        </div>
-                        <button className="btn mr-4 p-3 rounded-lg hover:bg-blue-800 hover:animate-bounce">
-                          <PencilLine />
-                        </button>
-                      </div>
-                      <div className="tooltip">
-                        <div className="tooltip-content">
-                          <div className=" text-red-400 text-md font-black">
-                            {" "}
-                            Delete{" "}
-                          </div>
-                        </div>
-                        <button className="btn mr-4 p-3 rounded-lg hover:bg-red-500 hover:animate-bounce">
-                          {" "}
-                          <Trash2 />
-                        </button>
-                      </div>
-                      <div className="tooltip">
-                        <div className="tooltip-content">
-                          <div className=" text-success text-md font-black">
-                            {" "}
-                            Add to Playlist{" "}
-                          </div>
-                        </div>
+                      <button className="btn btn-soft btn-warning mr-4 p-3 rounded-lg hover:animate-bounce">
+                        <PencilLine />
+                      </button>
+                      <button className="btn mr-4 p-3 rounded-lg bg-red-500 hover:animate-bounce">
+                        <Trash2 /></button>
+                      <Modal
+                        id={problem.id}
+                        buttonColor={'btn-info'}
+                        buttonIcon={<BookmarkPlus />}
+                        title={"Add to Playlist"}
+                        modalContent={<PlaylistForm />} />
 
-                        <div className="dropdown relative">
-                          <div
-                            tabIndex={0}
-                            role="button"
-                            className="btn  z-10 mr-4 p-3 rounded-lg hover:bg-success "
-                          >
-                            <BookmarkPlus />
-                          </div>
-                          <ul
-                            tabIndex={0}
-                            className="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow-sm absolute"
-                          >
-                            <li>
-                              <a>Item 1</a>
-                            </li>
-                            <li>
-                              <a>Item 2</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div className="tooltip">
-                        <div className="tooltip-content">
-                          <div className=" text-orange-400 text-md font-black">
-                            {" "}
-                            Actions{" "}
-                          </div>
-                        </div>
-                        <button className="btn z-10 mr-4 p-3 rounded-lg hover:bg-error">
-                          {" "}
-                          <Ellipsis />
-                        </button>
-                      </div>
+
+                      <button className="btn z-10 mr-4 p-3 rounded-lg hover:bg-error">
+                        <Ellipsis />
+                      </button>
+
                     </th>
                   </tr>
                 );
