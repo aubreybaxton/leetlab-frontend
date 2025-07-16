@@ -75,6 +75,12 @@ function ProblemList() {
       <h2 className="text-center text-2xl"> Problems</h2>
 
       {/* Playlist button */}
+      <Modal
+      id={"Create Playlist"}
+      buttonIcon={<FilePlus />}
+      title={"Create"}
+      modalContent={ <PlaylistForm />}
+      />
       <button className=" absolute top-4 right-4 btn btn-secondary rounded-xl "
         onClick={() => document.getElementById('playlistModal').showModal()}
       >
