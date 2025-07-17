@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ToggleTheme from './ToggleTheme.jsx';
+import { Braces } from 'lucide-react';
+
 
 function Index() {
   return (
@@ -23,10 +25,14 @@ function Index() {
 
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content text-center">
-          <div className="max-w-lg">
-            <h1 className="text-4xl font-bold pb-4">Welcome to the <strong className='text-indigo-600 tooltip tooltip-top' data-tip="CodeLab is the Love for the Developers">{"<"} CodeLab {">"} </strong></h1>
-            <p className='text-xl pb-4'>Platform is Inspired by LeetCode, and designed to provide the <strong>Best-In-Class feature</strong> and <strong> Best Coding Practices</strong> to improve the Knowledge and User Experience.</p>
+          <div className="max-w-lg m-4">
+            <h1 className="text-4xl font-bold pb-4" data-aos="zoom-in"> <strong className='text-indigo-600 tooltip tooltip-top hover:animate-bounce bg-accent rounded-2xl p-4' data-tip="CodeLab is the Love for the Developers"
+            >{"<"} CodeLab {">"} </strong></h1>
+            <p className='text-xl pb-4' data-aos="zoom-in-up">Platform designed to provide the <strong>Best-In-Class feature</strong> and <strong> Best Coding Practices</strong> to improve the Knowledge and User Experience.</p>
             {/* <button className="btn btn-primary">Get Started</button> */}
+          </div>
+          <div className='text-6xl flex items-center justify-center  min-w-96 min-h-96 bg-accent m-4 rounded-2xl hover:animate-bounce hover:rotate-10 transition delay-1000 ease-in-out' data-aos="zoom-in">
+          <img src={'/images/bgleetlab.png'}  alt='leetlab' className='rounded-2xl'/>
           </div>
         </div>
       </div>
@@ -164,7 +170,9 @@ function Index() {
           <div className="mockup-browser-toolbar bg-base-300 rounded-2xl p-4">
             <div className="input">https://leetlab.com</div>
           </div>
-          <div className="grid place-content-center h-160">Hello!</div>
+          <div className="grid place-content-center h-160 mt-20">
+            <img src={'/images/bgleetlab.png'}  alt='leetlab' className='rounded-2xl'/>
+          </div>
         </div>
       </div>
       {/* Footer */}
