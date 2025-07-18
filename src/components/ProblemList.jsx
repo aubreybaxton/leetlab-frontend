@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useProblemStore } from "../store/useProblemStore.js";
 import { useAuthStore } from "../store/useAuthStore.js";
@@ -15,9 +15,8 @@ import PlaylistForm from "./PlaylistForm.jsx";
 
 
 function ProblemList() {
-  
 
-  const { problems } = useProblemStore();
+  const { problems, deleteProblem } = useProblemStore();
   const { authUser } = useAuthStore();
   const [search, setSearch] = useState("");
   const [difficulty, setDifficulty] = useState("ALL");
@@ -67,6 +66,10 @@ function ProblemList() {
     );
   }, [filteredProblems, currentPage]);
 
+  const onDelete =(id)=>{
+    deleteProblem(id)
+  }
+
   return (
     <div
       className=" flex flex-col justify-center  border-2 border-blue-600 mx-24 p-4 rounded-4xl shadow-xl/30 shadow-blue-500/50  mb-8 relative"
@@ -75,29 +78,33 @@ function ProblemList() {
       <h2 className="text-center text-2xl"> Problems</h2>
 
       {/* Playlist button */}
-      {/* <Modal
-      id={"Create Playlist"}
-      buttonIcon={<FilePlus />}
-      title={"Create"}
-      modalContent={ <PlaylistForm />}
-      
-      /> */}
-      <button className=" absolute top-4 right-4 btn btn-secondary rounded-xl "
+      {/*  */}
+      <div className="absolute top-4 right-4">
+        <Modal
+          id={"Create Playlist"}
+          buttonName={"Create Playlist"}
+          buttonIcon={<FilePlus />}
+          title={"Create"}
+          buttonColor={"btn-accent"}
+          modalContent={<PlaylistForm  id={"Create Playlist"}/>}
+        />
+      </div>
+      {/* <button className=" absolute top-4 right-4 btn btn-secondary rounded-xl "
         onClick={() => document.getElementById('playlistModal').showModal()}
       >
         <FilePlus /> Create Playlist
-      </button>
+      </button> */}
 
-      <dialog id="playlistModal" className="modal">
+      {/* <dialog id="playlistModal" className="modal">
         <div className="modal-box">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
+            
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
           <PlaylistForm />
 
         </div>
-      </dialog>
+      </dialog> */}
 
       <div className="divider"></div>
       <div className="flex justify-evenly">
@@ -221,7 +228,8 @@ function ProblemList() {
                       <button className="btn btn-soft btn-warning mr-4 p-3 rounded-lg hover:animate-bounce">
                         <PencilLine />
                       </button>
-                      <button className="btn mr-4 p-3 rounded-lg bg-red-500 hover:animate-bounce">
+                      <button className="btn mr-4 p-3 rounded-lg bg-red-500 hover:animate-bounce"
+                       onClick={()=>onDelete(problem.id)}>
                         <Trash2 /></button>
                       <Modal
                         id={problem.id}

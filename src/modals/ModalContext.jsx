@@ -1,3 +1,3 @@
-import React,{createContext, useContext} from "react";
+import React,{createContext} from "react";
 
-export const ModalContext= createContext()
+export const ModalContext= createContext(false)

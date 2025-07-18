@@ -1,13 +1,15 @@
 // components/Modal.js
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { ModalContext } from '../modals/ModalContext';
 
 
-const Modal = ({ id, title, buttonIcon,buttonColor,modalContent,onCloseModal }) => {
-    
+const Modal = ({ id, title,buttonName, buttonIcon,buttonColor,modalContent }) => {
+    const {openModal}= useContext(ModalContext)
   return (
 
     <>
-      <button className={`btn ${buttonColor} mr-4 p-3 rounded-lg`} onClick={() => document.getElementById(`${id}`).showModal()}>{buttonIcon}</button>
+      <button className={`btn ${buttonColor} mr-4 p-3 right-4 rounded-xl `} onClick={() => openModal(id)}>{buttonIcon}{buttonName}</button>
       <dialog id={id} className="modal">
         <div className="modal-box m-4">
           <form method="dialog">

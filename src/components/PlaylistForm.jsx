@@ -1,11 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import { useForm } from 'react-hook-form';
 import { playlistFormSchema } from '../page/schema/Schema.jsx';
 import { usePlaylistStore } from '../store/usePlaylistStore.js';
+import { ModalContext } from "../modals/ModalContext.jsx";
 
-function PlaylistForm() {
-    
+
+function PlaylistForm({id}) {
+    const { closeModal } = useContext(ModalContext)
     const{createPlaylist}=usePlaylistStore();
     const { 
         register,
@@ -18,6 +20,7 @@ function PlaylistForm() {
         console.log(value)
         createPlaylist(value);
         reset();
+        closeModal(id)
     }
     return (
         <>
