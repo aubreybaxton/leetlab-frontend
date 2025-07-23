@@ -8,6 +8,7 @@ function Index() {
   return (
     <>
       <div className='w-full px-4 pt-2 sticky top-0 z-10 '>
+      
         <div className="navbar  bg-primary text-primary-content shadow-lg rounded-2xl">
           <div className="flex-1">
             <Link className="mx-2 text-xl" to={"/index"}> CodeLab </Link>

@@ -16,7 +16,7 @@ import SubmissionList from "../components/SubmissionList.jsx";
 
 const ProblemPage = () => {
   const { id } = useParams();
-  const { getProblemById, problem, isProblemLoading } = useProblemStore();
+  const { getProblemById, problem, isProblemLoading  } = useProblemStore();
   const { getSubmissionCount, submissionCount, submissionByProblem,isLoading,getSubmissionByUserAndProblem }= useSubmissionStore();
   const { submission, isExecuting, executeCode } = useExecutionStore();
 
