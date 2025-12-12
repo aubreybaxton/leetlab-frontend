@@ -7,8 +7,8 @@ function SubmissionResult({ submission }) {
     const memoryArray = JSON.parse(submission.memory || "[]")
     const timeArray = JSON.parse(submission.time || '[]')
 
-    const avgMemory = memoryArray.map((m) => (parseFloat(m))).reduce((a, b) => a + b, 0)/memoryArray.length;
-    const avgTime = timeArray.map((t) => (parseFloat(t))).reduce((a, b) => a + b, 0)/timeArray.length;
+    const avgMemory = memoryArray.map((m) => (parseFloat(m))).reduce((a, b) => a + b, 0) / memoryArray.length;
+    const avgTime = timeArray.map((t) => (parseFloat(t))).reduce((a, b) => a + b, 0) / timeArray.length;
     console.log("average", avgMemory)
     console.log("average", avgTime)
 
@@ -55,7 +55,7 @@ function SubmissionResult({ submission }) {
                     <div className="card-body p-4">
                         <h3 className="card-title text-sm justify-center">Testcase Success </h3>
                         <div className="text-lg font-bold">
-                            {successRate}{" %"}
+                            {successRate.toFixed(2)}{" %"}
                         </div>
                     </div>
                 </div>
@@ -65,31 +65,32 @@ function SubmissionResult({ submission }) {
                     <div className="card-body p-4">
                         <h3 className="card-title text-sm justify-center">Testcase Passed </h3>
                         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-                            {submission.testCases.map((tc) => (
-                                <table className="table text-center" key={tc.id}>
-                                    {/* head */}
-                                    <thead>
-                                        <tr>
-                                            <th>S.No</th>
-                                            <th>Status</th>
-                                            <th>Expected Output</th>
-                                            <th>Your Output</th>
-                                            <th>Memory</th>
-                                            <th>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+
+                            <table className="table text-center">
+                                {/* head */}
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Status</th>
+                                        <th>Expected Output</th>
+                                        <th>Your Output</th>
+                                        <th>Memory</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                {submission.testCases.map((tc) => (
+                                    <tbody key={tc.id}>
                                         {/* row 1 */}
                                         <tr>
                                             <th>{tc.testCase}</th>
                                             <td>{tc.passed ?
-                                                <div className='text-success'>
+                                                <div className='text-success flex items-center space-x-2'>
                                                     <CheckCircle2 />
-                                                    Passed
+                                                    <div>Passed</div>
                                                 </div> :
-                                                <div>
+                                                <div className='text-red-500 flex items-center space-x-2'>
                                                     <XCircle />
-                                                    Failed
+                                                    <div>Failed</div>
                                                 </div>}</td>
                                             <td>{tc.expected}</td>
                                             <td>{tc.stdout}</td>
@@ -98,8 +99,9 @@ function SubmissionResult({ submission }) {
                                         </tr>
 
                                     </tbody>
+                                    ))}
                                 </table>
-                            ))}
+                            
                         </div>
                     </div>
                 </div>

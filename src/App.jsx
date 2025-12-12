@@ -69,14 +69,14 @@ function App() {
             <Route path="setting" element={authUser ? <Setting /> : <Navigate to={"/index"} />} />
             <Route path="problem/:id" element={authUser ? <ProblemPage /> : <Navigate to={"/login"} />} />
             <Route element={<AdminRoute />}>
-            <Route path="addproblem" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
-            <Route path="profileadmin" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
+              <Route path="addproblem" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
+              <Route path="profileadmin" element={authUser ? <AddProblem /> : <Navigate to={"/"} />} />
+            </Route>
           </Route>
-          </Route>
-          <Route path="/index" element={!authUser ? <Index />: <Navigate to={'/'}/>} />
+          <Route path="/index" element={!authUser ? <Index /> : <Navigate to={'/'} />} />
           <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={"/"} />} />
           <Route path="/signup" element={!authUser ? <SignupPage /> : <Navigate to={"/"} />} />
-          
+
           <Route path="*" element={<NotFound />} />
 
         </Routes>
