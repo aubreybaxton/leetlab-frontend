@@ -27,7 +27,7 @@ const HomePage = () => {
         <p className='text-xl'>Platform is Inspired by LeetCode, and designed to provide the <strong>Best-In-Class feature</strong> and <strong> Best Coding Practices</strong> to improve the Knowledge and User Experience.</p>
       </div>
       <br/>
-      {problems.length > 0 ? <ProblemList /> : <div>No Problem found</div>}
+      {problems.length > 0 ? <ProblemList /> : <div className='text-center'>No Problem found</div>}
     </>
   )
 }

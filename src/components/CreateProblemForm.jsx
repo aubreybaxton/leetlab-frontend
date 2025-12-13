@@ -17,7 +17,7 @@ import { axiosInstance } from "../libs/axios.js";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { addProblemSchema } from "../page/schema/Schema.jsx";
-import { sampledpData, sampleStringProblem } from "./sampleData.js";
+import { sampledpData, sampleStringProblem,SampleCountString } from "./sampleData.js";
 
 function CreateProblemForm() {
   const [sampleType, setSampleType] = useState("DP");
@@ -52,7 +52,7 @@ function CreateProblemForm() {
   });
 
   const loadSampleData = () => {
-    const sampleData = sampleType === "DP" ? sampledpData : sampleStringProblem;
+    const sampleData = sampleType === "DP" ? SampleCountString : sampleStringProblem;
 
     replaceTags(sampleData.tags.map((tag) => tag));
     replacetestcases(sampleData.testcases.map((tc) => tc));

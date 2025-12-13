@@ -27,22 +27,22 @@ function Navbar() {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu dropdown-content bg-slate-500 text-slate-content rounded-box z-1 mt-3 w-44 p-2 shadow">
-                            <p className='text-accent text-center'>{authUser?.name}</p>
+                            className="menu dropdown-content bg-indigo-200 text-slate-content rounded-box z-1 mt-3 w-44 p-2 shadow">
+                            <p className='text-rose-400 text-center'>{authUser?.name}</p>
                             <div className='divider'></div>
                             {authUser?.role === "ADMIN" ? 
-                            <li><Link to={"/profileadmin"}> <User /> Admin Profile</Link></li> 
-                            : <li><Link to={"/profile"}> <User /> Profile</Link></li>
+                            <li className='text-black'><Link to={"/profile"}> <User /> Admin Profile</Link></li> 
+                            : <li className='text-black'><Link to={"/profile"}> <User /> Profile</Link></li>
                             }
-                            <li><Link to={"/profile"}> <User /> Profile</Link></li>
+                            {/* <li className='text-black'><Link to={"/profile"}> <User /> Profile</Link></li> */}
                             {authUser?.role === "ADMIN" && (
                                 <>
-                                <li><Link to={"/addproblem"}><FilePlus2 /> Add Problem</Link> </li>
+                                <li className='text-black'><Link to={"/addproblem"}><FilePlus2 /> Add Problem</Link> </li>
                                 </>
                             )}
-                            <li><Link to={"/setting"}> <Settings /> Settings</Link></li>
+                            <li className='text-black'><Link to={"/setting"}> <Settings /> Settings</Link></li>
                             <div className='divider'></div>
-                            <li><LogoutButton><LogOut /> Logout </LogoutButton></li>
+                            <li className='bg-rose-500 rounded-lg'><LogoutButton><LogOut /> Logout </LogoutButton></li>
                         </ul>
                     </div>
                 </div>
