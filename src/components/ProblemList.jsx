@@ -1,6 +1,7 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo, useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProblemStore } from "../store/useProblemStore.js";
+import { usePlaylistStore } from '../store/usePlaylistStore.js';
 import { useAuthStore } from "../store/useAuthStore.js";
 import Modal from "../page/Modal.jsx";
 import {
@@ -11,6 +12,7 @@ import {
   Ellipsis,
 } from "lucide-react";
 import PlaylistForm from "./PlaylistForm.jsx";
+import AddToPlaylist from "./AddToPlaylist.jsx";
 
 
 
@@ -23,6 +25,7 @@ function ProblemList() {
   const [selectedTag, setSelectedTag] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const {fetchPlaylist, playlist,isPlaylistLoading }=usePlaylistStore();
 
   const difficultyLevel = ["EASY", "MEDIUM", "HARD"];
 
@@ -65,6 +68,10 @@ function ProblemList() {
       currentPage * itemPerPage,
     );
   }, [filteredProblems, currentPage]);
+
+  useEffect(() => {
+    fetchPlaylist();
+},[])
 
   const onDelete =(id)=>{
     deleteProblem(id)
@@ -236,7 +243,7 @@ function ProblemList() {
                         buttonColor={'btn-info'}
                         buttonIcon={<BookmarkPlus />}
                         title={"Add to Playlist"}
-                        modalContent={<PlaylistForm />} />
+                        modalContent={<AddToPlaylist  playlist={playlist} isPlaylistLoading={isPlaylistLoading} problemId={problem.id}/>} />
 
 
                       <button className="btn z-10 mr-4 p-3 rounded-lg hover:bg-error">
