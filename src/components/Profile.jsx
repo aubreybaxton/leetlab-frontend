@@ -40,37 +40,37 @@ function Profile() {
     return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   }
   const date = new Date();
-  const generateActivity = useMemo(() => {
+  // const generateActivity = useMemo(() => {
 
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
+  //   const months = [
+  //     "January",
+  //     "February",
+  //     "March",
+  //     "April",
+  //     "May",
+  //     "June",
+  //     "July",
+  //     "August",
+  //     "September",
+  //     "October",
+  //     "November",
+  //     "December",
+  //   ];
 
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thrusday",
-      "Friday",
-      "Saturday",
-    ];
-    const pDay = days[date.getDay()];
-    const pMonth = months[date.getMonth()]
-    console.log("day and Month", pDay, pMonth)
+  //   const days = [
+  //     "Sunday",
+  //     "Monday",
+  //     "Tuesday",
+  //     "Wednesday",
+  //     "Thrusday",
+  //     "Friday",
+  //     "Saturday",
+  //   ];
+  //   const pDay = days[date.getDay()];
+  //   const pMonth = months[date.getMonth()]
+  //   console.log("day and Month", pDay, pMonth)
 
-  }, [])
+  // }, [])
 
 
   return (
