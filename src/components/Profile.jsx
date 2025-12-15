@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useAuthStore } from '../store/useAuthStore.js';
 import { useProblemStore } from '../store/useProblemStore.js';
 
@@ -11,6 +11,7 @@ function Profile() {
 
   useEffect(() => {
     getSolvedProblemByUser()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   console.log("solvedProblem", solvedProblems);

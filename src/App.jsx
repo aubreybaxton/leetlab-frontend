@@ -12,11 +12,12 @@ import { useAuthStore } from "./store/useAuthStore.js";
 import Layout from "./layout/layout.jsx";
 import AdminRoute from "./layout/AdminRoute.jsx";
 import AddProblem from "./page/AddProblem.jsx";
-import Profile from "./components/profile.jsx";
+
 import Setting from "./components/Setting.jsx";
 import Index from "./page/index.jsx";
 import NotFound from "./page/NotFound.jsx";
 import ProblemPage from "./page/ProblemPage.jsx";
+import Profile from "./components/Profile.jsx";
 
 
 AOS.init();
