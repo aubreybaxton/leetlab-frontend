@@ -23,7 +23,16 @@ const ProblemPage = () => {
   console.log("submissionByProblem == problemPage",submissionByProblem)
   const [code, setCode] = useState("")
   // const [activeTab, setActiveTab] = useState("description");
-  const [selectedLanguage, setSelectedLanguage] = useState("JAVASCRIPT");
+
+  const languageMap = {
+    JAVASCRIPT: "javascript",
+    
+    PYTHON: "python",
+    JAVA: "java",
+    
+  };
+  
+  const [selectedLanguage, setSelectedLanguage] = useState(languageMap.JAVASCRIPT);
   const [isBookmarked, SetIsBookmarked] = useState(false)
   const [testcases, setTestcases] = useState([]);
 
@@ -58,7 +67,8 @@ const ProblemPage = () => {
 
   const handleLanguageChange = (e) => {
     const lang = e.target.value
-    setSelectedLanguage(lang)
+    const monacoLang = languageMap[lang] || "javascript";
+    setSelectedLanguage(monacoLang)
     setCode(problem.codeSnippets?.[lang] || "")
   }
 
