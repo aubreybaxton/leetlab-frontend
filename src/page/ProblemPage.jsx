@@ -16,20 +16,20 @@ import SubmissionList from "../components/SubmissionList.jsx";
 
 const ProblemPage = () => {
   const { id } = useParams();
-  const { getProblemById, problem, isProblemLoading  } = useProblemStore();
-  const { getSubmissionCount, submissionCount, submissionByProblem,isLoading,getSubmissionByUserAndProblem }= useSubmissionStore();
+  const { getProblemById, problem, isProblemLoading } = useProblemStore();
+  const { getSubmissionCount, submissionCount, submissionByProblem, isLoading, getSubmissionByUserAndProblem } = useSubmissionStore();
   const { submission, isExecuting, executeCode } = useExecutionStore();
 
-  console.log("submissionByProblem == problemPage",submissionByProblem)
+  console.log("submissionByProblem == problemPage", submissionByProblem)
   const [code, setCode] = useState("")
   // const [activeTab, setActiveTab] = useState("description");
 
-  
+
   const [selectedLanguage, setSelectedLanguage] = useState("JAVASCRIPT");
   const [isBookmarked, SetIsBookmarked] = useState(false)
   const [testcases, setTestcases] = useState([]);
 
-  
+
 
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const ProblemPage = () => {
     getSubmissionCount(id)
     getSubmissionByUserAndProblem(id)
 
-  }, [id,submission])
+  }, [id, submission])
 
   useEffect(() => {
     if (problem) {
@@ -87,16 +87,7 @@ const ProblemPage = () => {
         <div className="text-2xl flex items-center ">
           <div> <Code /> </div>
           <div> {problem?.title} </div>
-          <div className="ml-auto">
 
-            <select className="select select-info" value={selectedLanguage} onChange={handleLanguageChange}>
-              // object.keys return a key of the object in array---
-              {Object.keys(problem?.codeSnippets || {}).map((lang) => (
-                <option key={lang} value={lang}>{lang.charAt(0).toUpperCase() + lang.slice(1)}</option>
-              ))}
-
-            </select>
-          </div>
         </div>
         <hr className="my-2" />
         <div className="flex bg-base-300 m-4 p-4 rounded-2xl">
@@ -181,7 +172,19 @@ const ProblemPage = () => {
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.editorial}</div>
           </div>
           <div className=" shadow-2xl rounded-2xl overflow-hidden">
-            <div className="p-2 flex"><SquareChevronRight /> Editor</div>
+            <div className="p-2 flex">
+              <SquareChevronRight /> Editor
+              <div className="ml-auto">
+
+                <select className="select select-info" value={selectedLanguage} onChange={handleLanguageChange}>
+  // object.keys return a key of the object in array---
+                  {Object.keys(problem?.codeSnippets || {}).map((lang) => (
+                    <option key={lang} value={lang}>{lang.charAt(0).toUpperCase() + lang.slice(1)}</option>
+                  ))}
+
+                </select>
+              </div>
+            </div>
             <Editor
               className="rounded-2xl overflow-hidden "
               lineDecorationsWidth={20}
