@@ -24,12 +24,6 @@ const ProblemPage = () => {
   const [code, setCode] = useState("")
   // const [activeTab, setActiveTab] = useState("description");
 
-  const languageMap = {
-    JAVASCRIPT: "javascript",
-    PYTHON: "python",
-    JAVA: "java",
-    
-  };
   
   const [selectedLanguage, setSelectedLanguage] = useState("JAVASCRIPT");
   const [isBookmarked, SetIsBookmarked] = useState(false)
@@ -66,8 +60,7 @@ const ProblemPage = () => {
 
   const handleLanguageChange = (e) => {
     const lang = e.target.value
-    const monacoLang = languageMap[lang];
-    setSelectedLanguage(monacoLang)
+    setSelectedLanguage(lang)
     setCode(problem.codeSnippets?.[lang] || "")
   }
 
@@ -196,7 +189,7 @@ const ProblemPage = () => {
               theme="vs-dark"
               defaultValue={code}
               key={selectedLanguage}
-              language={selectedLanguage}
+              language={selectedLanguage.toLowerCase()}
               value={code}
               onChange={(val) => setCode(val || "")}
               options={{
