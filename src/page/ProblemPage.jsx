@@ -185,7 +185,6 @@ const ProblemPage = () => {
               lineDecorationsWidth={20}
               height="550px"
               theme="vs-dark"
-              defaultLanguage="javascript"
               defaultValue={code}
               key={selectedLanguage}
               language={selectedLanguage}
