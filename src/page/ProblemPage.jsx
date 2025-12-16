@@ -182,11 +182,12 @@ const ProblemPage = () => {
             <div className="p-2 flex"><SquareChevronRight /> Editor</div>
             <Editor
               className="rounded-2xl overflow-hidden "
-              lineDe
+              lineDecorationsWidth={20}
               height="550px"
               theme="vs-dark"
               defaultLanguage="javascript"
               defaultValue={code}
+              key={selectedLanguage}
               language={selectedLanguage}
               value={code}
               onChange={(val) => setCode(val || "")}
@@ -205,7 +206,7 @@ const ProblemPage = () => {
             />
             <div className="flex justify-between m-4">
               <button className="btn btn-secondary" onClick={handleRunCode} disabled={isExecuting}> Run </button>
-              <button className="btn btn-success"> Submit </button>
+              {/* <button className="btn btn-success"> Submit </button> */}
             </div>
             {/*  Submisstion */}
 

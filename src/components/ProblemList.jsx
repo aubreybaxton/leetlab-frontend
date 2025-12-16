@@ -232,7 +232,7 @@ function ProblemList() {
                       ))}
                     </td>
                     <th>
-                      <button className="btn btn-soft btn-warning mr-4 p-3 rounded-lg hover:animate-bounce">
+                      <button className="btn btn-soft btn-warning mr-4 p-3 rounded-lg ">
                         <PencilLine />
                       </button>
                       <button className="btn mr-4 p-3 rounded-lg bg-red-500 hover:animate-bounce"
