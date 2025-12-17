@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Editor from "@monaco-editor/react";
-import { Code, SquareChevronRight } from "lucide-react";
+import { Code, SquareChevronRight, House } from "lucide-react";
 
 import { useProblemStore } from "../store/useProblemStore.js";
 import { getLanguageId } from "../libs/lang.js";
@@ -85,12 +85,17 @@ const ProblemPage = () => {
 
       <div className="border rounded-2xl border-indigo-600 m-4 p-4 shadow-2xl font-mono">
         <div className="text-2xl flex items-center ">
+          <div className="mr-4 hover:bg-slate-300 p-2 rounded">
+            <Link to={"/"}  aria-label="Go to homepage">
+              <House />
+            </Link>
+          </div>          
           <div> <Code /> </div>
           <div> {problem?.title} </div>
 
         </div>
         <hr className="my-2" />
-        <div className="flex bg-base-300 m-4 p-4 rounded-2xl">
+        <div className="flex bg-base-300 m-2 p-4 rounded-2xl">
           <div className="px-4">Updated :{problem && new Date(problem.updatedAt).toLocaleString("en-US", {
             year: "numeric",
             month: "long",
@@ -99,7 +104,7 @@ const ProblemPage = () => {
           </div>
           <div className="px-4"> Submissions : {submissionCount}</div>
         </div>
-        <div className="grid grid-cols-2 gap-2 p-4">
+        <div className="grid grid-cols-2 gap-4 p-4">
           <div className="tabs tabs-box rounded-2xl">
             <input type="radio" name="my_tabs_3" className="tab rounded-2xl" aria-label="Description" defaultChecked />
             <div className="tab-content bg-base-100 border-base-300 p-6 rounded-2xl">
@@ -172,12 +177,12 @@ const ProblemPage = () => {
             <div className="tab-content bg-base-100 border-base-300 p-6">{problem?.editorial}</div>
           </div>
           <div className=" shadow-2xl rounded-2xl overflow-hidden">
-            <div className="p-2 flex">
+            <div className="p-2 flex items-center justify">
               <SquareChevronRight /> Editor
               <div className="ml-auto">
 
                 <select className="select select-info" value={selectedLanguage} onChange={handleLanguageChange}>
-  // object.keys return a key of the object in array---
+                  // object.keys return a key of the object in array---
                   {Object.keys(problem?.codeSnippets || {}).map((lang) => (
                     <option key={lang} value={lang}>{lang.charAt(0).toUpperCase() + lang.slice(1)}</option>
                   ))}
